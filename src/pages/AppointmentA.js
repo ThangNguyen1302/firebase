@@ -38,10 +38,13 @@ const AppointmentA = () => {
         console.log('currentUser: ',currentUser);
         try {
             // Lấy tài liệu người dùng từ Firestore
-            const q = query(collection(db, 'patient'), where('uid', '==', currentUser.uid));
-            const querySnapshot = await getDocs(q);
-            const userDoc = querySnapshot.docs[0]; // Lấy tài liệu người dùng đầu tiên từ querySnapshot
+            const userRef = doc(db, 'patient', currentUser.uid);
+            console.log('userRef: ',userRef);
+            const userDoc = await getDoc(userRef);
+            console.log('userDoc: ',userDoc);
             const userData = userDoc.data(); // Dữ liệu hiện tại của người dùng
+
+            console.log('userData: ',userData);
 
             try{
                 const qDoctor = query(collection(db, 'doctor'), where('name', '==', 'doc'));
@@ -98,7 +101,7 @@ const AppointmentA = () => {
             
 
             // Cập nhật tài liệu người dùng với dữ liệu mới
-            await updateDoc(userDoc.ref, updatedUserData);
+            await updateDoc(userRef, updatedUserData);
 
             console.log('Appointment updated successfully!');
         } catch (error) {

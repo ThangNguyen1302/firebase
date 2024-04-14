@@ -18,11 +18,11 @@ function Login(){
     e.preventDefault()
     signInWithEmailAndPassword(auth, email, password)
     .then(() => {
-      if(!auth.currentUser.emailVerified) {
+      if(auth.currentUser.emailVerified) {
         sendEmailVerification(auth.currentUser)
         .then(() => {
           setTimeActive(true)
-          history.push('/verify-email')
+          history.push('/profile')
         })
       .catch(err => alert(err.message))
     }else{

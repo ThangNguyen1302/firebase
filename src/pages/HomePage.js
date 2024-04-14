@@ -4,6 +4,15 @@ import './HomePage.css'; // Importing CSS file
 import logo from './images/pngegg.png'; // Importing image
 import pickture1 from './images/nurse-doctor-team-ready-work-day.jpg'; // Importing image
 import pickture2 from './images/doctors-hands-holding-medical-care-objects.jpg'; // Importing image
+import icons1 from './images/icons1.png'; // Importing image
+import icons2 from './images/icons2.png'; // Importing image
+import icons3 from './images/icons3.png'; // Importing image
+import icons4 from './images/icons4.png'; // Importing image
+import pickture3 from './images/doctor3.png'; // Importing image
+import tick from './images/tick.jpg'; // Importing image
+import doctor1 from './images/doctor1.png'; // Importing image
+import doctor2 from './images/doctor7.jpg'; // Importing image
+import doctor3 from './images/doctor8.png'; // Importing image
 
 function HomePage() {
   const history = useHistory(); // Access history object
@@ -32,6 +41,7 @@ function HomePage() {
           </nav>
         </div>
       </header>
+      
 
         <div className="hero">
           <img src={pickture1} alt="hero"/>
@@ -42,20 +52,78 @@ function HomePage() {
           <button>Explore</button>
         </div>
 
+        <div className="work-section-wrapper">
+          <h1>Lorem ipsum dolor sit amet consectetur.</h1>
+
+          <div className="work-section-bottom">
+            
+            <div className="work-section-info">
+              <img src={icons1} alt="icon"/>
+              <h2>Our Services</h2>
+              <p>Discover amazing destinations with us.</p>
+            </div>
+            <div className="work-section-info">
+              <img src={icons2} alt="icon"/>
+              <h2>Our Services</h2>
+              <p>Discover amazing destinations with us.</p>
+            </div>
+            <div className="work-section-info">
+              <img src={icons3} alt="icon"/>
+              <h2>Our Services</h2>
+              <p>Discover amazing destinations with us.</p>
+            </div>
+            <div className="work-section-info">
+              <img src={icons4} alt="icon"/>
+              <h2>Our Services</h2>
+              <p>Discover amazing destinations with us.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="why-you-choose-us">
+          <img src={pickture3} alt="why"/>
+          <div className="why-you-choose-us-text">
+            <h2>Why Choose Us</h2>
+            <div className="why-you-choose-us-info">
+              <img src={tick} alt="tick"/>
+              <p>Discover amazing destinations with us.</p>
+            </div>
+            <div className="why-you-choose-us-info">
+              <img src={tick} alt="tick"/>
+              <p>Discover amazing destinations with us.</p>
+            </div>
+            <div className="why-you-choose-us-info">
+              <img src={tick} alt="tick"/>
+              <p>Discover amazing destinations with us.</p>
+            </div>
+            <div className="why-you-choose-us-info">
+              <img src={tick} alt="tick"/>
+              <p>Discover amazing destinations with us.</p>
+            </div>
+          </div>
+          
+        </div>
+
         <div className="about">
-          <img src={pickture2} alt="about"/>
-          <h2>Our Features</h2>
-          <div className="feature">
-            <h3>Quality Service</h3>
-            <p>We provide top-notch services to our customers.</p>
+          <div className='about-text'>
+            <h1>Top doctor from the world</h1>
           </div>
-          <div className="feature">
-            <h3>Expert Guides</h3>
-            <p>Our experienced guides will make your journey memorable.</p>
-          </div>
-          <div className="feature">
-            <h3>Exciting Destinations</h3>
-            <p>Explore amazing destinations with us.</p>
+          <div className='about-image'>
+            <div className='about-image-doctor'>
+              <img src={doctor1} alt="doctor"/>
+              <p>Dr. John Doe</p>
+              <button>Book Now</button>
+            </div>
+            <div className='about-image-doctor'>
+              <img src={doctor2} alt="doctor"/>
+              <p>Dr. John Doe</p>
+              <button>Book Now</button>
+            </div>
+            <div className='about-image-doctor'>
+              <img src={doctor3} alt="doctor"/>
+              <p>Dr. John Doe</p>
+              <button>Book Now</button>
+            </div>
           </div>
         </div>
 

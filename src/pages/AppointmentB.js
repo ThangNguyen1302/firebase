@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './forms.css';
 import { db } from '../firebase';
-import { collection, query, where, getDocs, doc, deleteDoc, setDoc } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, addDoc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { useAuthValue } from '../contex/AuthContext';
 import { Link } from 'react-router-dom';
 import './appointmentb.scss';
@@ -13,16 +13,8 @@ const AppointmentB = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const q = query(collection(db, 'patient'), where('uid', '==', currentUser.uid));
-                const querySnapshot = await getDocs(q);
-                
-                // const appointments = [];
-                // querySnapshot.forEach(doc => {
-                //     const userAppointments = doc.data().appointments || [];
-                //     appointments.push(...userAppointments);
-                // });
-                // setUserData(appointments);
-                const userDoc = querySnapshot.docs[0]; 
+                const userRef = doc(db, 'patient', currentUser.uid);
+                const userDoc = await getDoc(userRef);
                 const data = userDoc.data();
                 console.log('userDoc:', data);
                 
@@ -35,55 +27,25 @@ const AppointmentB = () => {
         fetchData();
     }, [currentUser]);
 
-    const deleteAppointment = async (appointment) => {
-        try {
-            // Find the document containing the appointment
-            const q = query(collection(db, 'patient'), where('uid', '==', currentUser.uid));
-            const querySnapshot = await getDocs(q);
-            
-            querySnapshot.forEach(doc => {
-                const userAppointments = doc.data().appointments || [];
-                const updatedAppointments = userAppointments.filter(appt => 
-                    appt.date !== appointment.date || 
-                    appt.time !== appointment.time || 
-                    appt.doctorName !== appointment.doctorName
-                );
-                console.log('updatedAppointments:', updatedAppointments);
-                console.log('userAppointments:', userAppointments);
-                console.log('appointment:', appointment);
-                // Update the document with the updated appointments array
-                setDoc(doc.ref, { appointments: updatedAppointments }, { merge: true });
-            });
-
-            // Update the local state to reflect the deletion
-            setUserData(prevAppointments => ({
-                appointments: prevAppointments.appointments.filter(appt => appt.date !== appointment.date && appt.time !== appointment.time && appt.doctorName !== appointment.doctorName)
-              }));
-                          
-            console.log('Appointment deleted successfully!');
-        } catch (error) {
-            console.error('Error deleting appointment:', error);
-        }
-    };
-
     const deleteDoctorAppointments = async (appointment, patientName) => {
         try {
             // Tìm tài liệu của bác sĩ dựa trên tên
-            const q = query(collection(db, 'doctor'), where('name', '==', appointment.nameDoctor));
+            const q = query(collection(db, 'doctor'), where('name', '==', appointment.doctorName));
             const querySnapshot = await getDocs(q);
+            const doctorDoc = querySnapshot.docs[0];
             
-            querySnapshot.forEach(doc => {
                 // Lọc ra các cuộc hẹn có 'nameDoctor' giống với 'nameDoctor' cần xóa
-                const doctorAppointments = doc.data().appointments || [];
+                const doctorAppointments = doctorDoc.data().appointments || [];
                 const updatedAppointments = doctorAppointments.filter(appt => 
                     appt.date !== appointment.date || 
                     appt.time !== appointment.time || 
-                    appt.doctorName !== appointment.patientName
-                );
-                                
+                    appt.patientName !== patientName // Corrected comparison
+                );        
                 // Cập nhật tài liệu với danh sách cuộc hẹn đã lọc
-                setDoc(doc.ref, { appointments: updatedAppointments }, { merge: true });
-            });
+
+            await updateDoc(doctorDoc.ref, { appointments: updatedAppointments });
+            
+
     
             // Cập nhật trạng thái cục bộ để cập nhật giao diện người dùng
             
@@ -92,6 +54,33 @@ const AppointmentB = () => {
             console.error('Error deleting doctor appointments:', error);
         }
     };
+
+    const deleteAppointment = async (appointment) => {
+        try {
+            const userRef = doc(db, 'patient', currentUser.uid);
+            const userDoc = await getDoc(userRef);
+            // Find the document containing the appointment
+                const userAppointments = userDoc.data().appointments || [];
+                const updatedAppointments = userAppointments.filter(appt => 
+                    appt.date !== appointment.date || 
+                    appt.time !== appointment.time || 
+                    appt.doctorName !== appointment.doctorName);
+                console.log('updatedAppointments:', updatedAppointments);
+                console.log('userAppointments:', userAppointments);
+                console.log('appointment:', appointment);
+                // Update the document with the updated appointments array
+                await updateDoc(userRef, { appointments: updatedAppointments });
+
+            // Update the local state to reflect the deletion
+            setUserData({ ...userData, appointments: updatedAppointments });
+                          
+            console.log('Appointment deleted successfully!');
+        } catch (error) {
+            console.error('Error deleting appointment:', error);
+        }
+    };
+
+    
     
 
     return (

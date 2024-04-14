@@ -90,8 +90,72 @@ nav button {
   margin-left: 50px;
 } 
 
+.work-section-wrapper {
+  margin-top: 15rem;
+}
+.work-section-wrapper h1 {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.work-section-bottom {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.work-section-info {
+  width: 200px;
+  min-height: 200px;
+  background-color: white;
+  padding: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 1rem;
+  color: #505050;
+  margin: 1rem 1rem;
+  border: 1px solid #757272;
+}
+
+.why-you-choose-us {
+  margin-top: 15rem;
+  padding: 5rem;
+  display: flex;
+
+}
+
+.why-you-choose-us img {
+  width: 500px;
+  height: 350px;
+  border-radius: 1rem;
+  margin-right: 5rem;
+}
+
+.why-you-choose-us-text {
+  flex-direction: column;
+  display: flex;
+}
+
+.why-you-choose-us-text img {
+  width: 30px;
+  height: auto;
+  margin-right: 1rem;
+}
+
+.why-you-choose-us-info {
+  margin-top: 1rem;
+  display: flex;
+}
+
+
+
 .about{
   padding: 300px 0;
+  margin-top: 15rem;
 }
 
 .about img{
@@ -99,20 +163,29 @@ nav button {
   width: 100%;
   height: 600px;
 }
-.features {
-  background-color: #f4f4f4;
-  padding: 50px 0;
+
+.about{
+  padding-top: 15rem;
+  padding: 5rem;
+  background-color: #d0e9ff;
+}
+
+.about-text{
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.about-image{
   display: flex;
+  justify-content:space-between;
 }
 
-.features h2 {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.feature {
-  text-align: center;
-  margin-bottom: 20px;
+.about-image-doctor img{
+  width: 300px;
+  height: 410px;
+  border-radius: 1rem;
+  border: 300px 350px solid #000000;
+  
 }
 
 footer {

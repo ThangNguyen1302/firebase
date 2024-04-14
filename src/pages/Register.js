@@ -3,7 +3,7 @@ import './forms.css';
 import { auth, db } from '../firebase';
 import { useHistory, Link } from 'react-router-dom';
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
-import { addDoc, collection } from "firebase/firestore"; 
+import { addDoc, collection, doc, setDoc } from "firebase/firestore"; 
 import { useAuthValue } from '../contex/AuthContext';
 
 
@@ -42,10 +42,9 @@ function Register() {
       setTimeActive(true);
 
       // Add user to the database
-      await addDoc(collection(db, type), {
+      await setDoc(doc(db, type, user.uid), {
         name: name,
         email: user.email,
-        uid: user.uid,
         appointments: appointments
       });
 
