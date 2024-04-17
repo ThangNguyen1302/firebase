@@ -1,8 +1,8 @@
 import './profile.css'
 import { useEffect, useState } from 'react';
-import { useAuthValue } from '../contex/AuthContext';
+import { useAuthValue } from '../../contex/AuthContext';
 import { signOut } from 'firebase/auth';
-import { auth, db } from '../firebase';
+import { auth, db } from '../services/firebase-config';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { useHistory } from 'react-router-dom'; // Import useHistory
 import { Link } from 'react-router-dom';

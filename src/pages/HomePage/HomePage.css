@@ -5,6 +5,8 @@
   box-sizing: border-box;
 }
 
+
+
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
@@ -64,6 +66,15 @@ nav button {
   cursor: pointer;
 }
 
+nav button:hover {
+  background-color: #1e70e3;
+}
+
+nav button:focus {
+  outline: none;
+  background-color: #91b4e6;
+}
+
 .hero {
   color: #fff;
   height: 600px;
@@ -89,6 +100,15 @@ nav button {
   cursor: pointer;
   margin-left: 50px;
 } 
+
+.hero button:hover {
+  background-color: #1e70e3;
+}
+
+.hero button:focus {
+  outline: none;
+  background-color: #91b4e6;
+}
 
 .work-section-wrapper {
   margin-top: 15rem;
@@ -121,6 +141,12 @@ nav button {
   border: 1px solid #757272;
 }
 
+.work-section-info:hover {
+  background-color: #cde5fc;
+  border: none;
+  cursor: pointer;
+}
+
 .why-you-choose-us {
   margin-top: 15rem;
   padding: 5rem;
@@ -151,6 +177,29 @@ nav button {
   display: flex;
 }
 
+.learn-more {
+  padding-top: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.learn-more a {
+  text-decoration: none;
+  color: #4499e9;
+  display: flex;
+
+}
+
+.learn-more img {
+  width: 30px;
+  height: auto;
+  margin-left: 1rem;
+}
+
+.learn-more a p:hover {
+  color: #1e70e3;
+}
+
+
 
 
 .about{
@@ -178,7 +227,28 @@ nav button {
 .about-image{
   display: flex;
   justify-content:space-between;
+  
 }
+
+.about-image-doctor{
+  text-align: center;
+  color: rgb(15, 15, 15);
+  text-size-adjust: 1.5rem;
+  
+}
+
+.about-image-doctor button{
+  border-radius: 1rem;
+  border: none;
+  background-color: #268be9;
+  color: #fff;
+}
+
+.about-image-doctor button:hover{
+  background-color: #1e70e3;
+  cursor: pointer;
+}
+
 
 .about-image-doctor img{
   width: 300px;
@@ -188,9 +258,56 @@ nav button {
   
 }
 
-footer {
-  background-color: #333;
-  color: #fff;
+
+
+.footer-wrapper {
+  margin: 6rem 0rem;
+  display: flex;
+  margin-top: 15rem;
+}
+.footer-logo-container img{
+  width: 110px;
+ 
+}
+.footer-icons {
+  margin-top: 2.5rem;
+  font-size: 0.5rem;
+  margin-right: 0.25rem;
+}
+
+.footer-icons img{
+  width: 70px;
+}
+
+
+
+/* .footer-section-one {
+  border: 2px solid blue;
+} */
+.footer-section-two {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.footer-section-columns {
+  display: flex;
+  flex-direction: column;
+  min-width: 190px;
+}
+.footer-section-columns span {
+  margin: 0.25rem 0rem;
+  font-weight: 600;
+  color: #4c4c4c;
+  cursor: pointer;
+}
+
+.footer-section-three{
   text-align: center;
-  padding: 20px 0;
+  margin-top: 2rem;
+}
+
+.footer-section-three p{
+  font-weight: 700;
+  color: #515151;
+  padding: 20px;
 }

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './forms.css';
-import { db } from '../firebase';
+import { db } from '../services/firebase-config';
 import { getDoc, updateDoc, doc } from "firebase/firestore"; // Import các biến và hàm từ Firebase Firestore
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { useAuthValue } from '../contex/AuthContext';
+import { useAuthValue } from '../../contex/AuthContext';
 import { Link } from 'react-router-dom';
 
 

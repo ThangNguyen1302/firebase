@@ -1,24 +1,29 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './HomePage.css'; // Importing CSS file
-import logo from './images/pngegg.png'; // Importing image
-import pickture1 from './images/nurse-doctor-team-ready-work-day.jpg'; // Importing image
-import pickture2 from './images/doctors-hands-holding-medical-care-objects.jpg'; // Importing image
-import icons1 from './images/icons1.png'; // Importing image
-import icons2 from './images/icons2.png'; // Importing image
-import icons3 from './images/icons3.png'; // Importing image
-import icons4 from './images/icons4.png'; // Importing image
-import pickture3 from './images/doctor3.png'; // Importing image
-import tick from './images/tick.jpg'; // Importing image
-import doctor1 from './images/doctor1.png'; // Importing image
-import doctor2 from './images/doctor7.jpg'; // Importing image
-import doctor3 from './images/doctor8.png'; // Importing image
+import logo from '../images/pngegg.png'; // Importing image
+import pickture1 from '../images/nurse-doctor-team-ready-work-day.jpg'; // Importing image
+import pickture2 from '../images/doctors-hands-holding-medical-care-objects.jpg'; // Importing image
+import icons1 from '../images/icons1.png'; // Importing image
+import icons2 from '../images/icons2.png'; // Importing image
+import icons3 from '../images/icons3.png'; // Importing image
+import icons4 from '../images/icons4.png'; // Importing image
+import pickture3 from '../images/doctor3.png'; // Importing image
+import tick from '../images/tick.jpg'; // Importing image
+import doctor1 from '../images/doctor1.png'; // Importing image
+import doctor2 from '../images/doctor7.jpg'; // Importing image
+import doctor3 from '../images/doctor8.png'; // Importing image
+import arrow from '../images/arrow.png'; // Importing image
+import face from '../images/face.png'; // Importing image
+import inta from '../images/inta.png'; // Importing image
+import x from '../images/x.png'; // Importing image
+import youtube from '../images/youtube.png'; // Importing image
 
 function HomePage() {
   const history = useHistory(); // Access history object
 
   const handleSignUp = () => {
-    history.push("/register"); // Navigate to the registration page
+    history.push("/signup"); // Navigate to the registration page
   }
   
   return (
@@ -100,6 +105,14 @@ function HomePage() {
               <img src={tick} alt="tick"/>
               <p>Discover amazing destinations with us.</p>
             </div>
+            <div className="learn-more">
+              
+              <Link to=''>
+                <p>Learn More</p>
+                <img src={arrow} alt="arrow"/>
+              </Link >
+              
+            </div>
           </div>
           
         </div>
@@ -127,11 +140,43 @@ function HomePage() {
           </div>
         </div>
 
-      <footer>
-        <div className="container">
-          <p>&copy; 2024 Beautiful Homepage. All rights reserved.</p>
+    <div className="footer-wrapper">
+      <div className="footer-section-one">
+        <div className="footer-logo-container">
+          <img src={logo} alt="" />
         </div>
-      </footer>
+        <div className="footer-icons">
+          <img src={face} alt="" />
+          <img src={inta} alt="" />
+          <img src={x} alt="" />
+          <img src={youtube} alt="" />
+        </div>
+      </div>
+      <div className="footer-section-two">
+        <div className="footer-section-columns">
+          <span>Qualtiy</span>
+          <span>Help</span>
+          <span>Share</span>
+          <span>Carrers</span>
+          <span>Testimonials</span>
+          <span>Work</span>
+        </div>
+        <div className="footer-section-columns">
+          <span>244-5333-7783</span>
+          <span>hello@food.com</span>
+          <span>press@food.com</span>
+          <span>contact@food.com</span>
+        </div>
+        <div className="footer-section-columns">
+          <span>Terms & Conditions</span>
+          <span>Privacy Policy</span>
+        </div>
+      </div>
+    </div>
+    <div className='footer-section-three'>
+        <hr />
+        <p>© 2021 Food, All Rights Reserved.</p>
+      </div>
     </div>
   );
 }

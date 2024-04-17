@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './forms.css';
-import { auth, db } from '../firebase';
+import { auth, db } from './services/firebase-config';
 import { useHistory, Link } from 'react-router-dom';
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { addDoc, collection, doc, setDoc } from "firebase/firestore"; 

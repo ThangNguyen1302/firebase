@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import './forms.css';
-import { db } from '../firebase';
+import { db } from '../services/firebase-config';
 import { collection, query, where, getDocs, doc, addDoc, setDoc, getDoc, updateDoc } from "firebase/firestore";
-import { useAuthValue } from '../contex/AuthContext';
+import { useAuthValue } from '../../contex/AuthContext';
 import { Link } from 'react-router-dom';
 import './appointmentb.scss';
 
