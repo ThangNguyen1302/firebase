@@ -14,7 +14,7 @@ function Profile() {
 
   useEffect(() => {
     const fetchUserProfile = async () => {
-      const q = query(collection(db, 'patient'), where('uid', '==', currentUser.uid));
+      const q = query(collection(db, 'users'), where('uid', '==', currentUser.uid));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach(doc => {
         setUserProfile(doc.data());

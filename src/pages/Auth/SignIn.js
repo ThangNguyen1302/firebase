@@ -38,24 +38,25 @@ const SignIn = () => {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, username, password);
             const userId = userCredential.user.uid;
+            const role = ['admin', 'users', 'doctor']
             //Lấy thông in vai trò từ Firestore
-            const userDocRef = doc(db, "user", userId);
-            const userDoc = await getDoc(userDocRef);
 
-            const userData = userDoc.data();
-            if (userDoc.exists()) {
-                const userData = userDoc.data();
-                if (userData.role === 'admin') {
-                    alert('Admin logged in successfully');
-                    // dispatch(push('/manage-device'));
-                } else {
-                    alert('User logged in successfully');
-                    // dispatch(push('/user-home'));
-                    history.push('/profile');
+            for (let r of role) {
+                const userDoc = await getDoc(doc(db, r, userId));
+                if (userDoc.exists()) {
+                    alert(r + ' logged in successfully');
+                    if (r === 'admin') {
+                        history.push('/admin');
+                    } else if (r === 'doctor') {
+                        history.push('/doctor');
+                    } else {
+                        history.push('/profile');
+                    }
+                    return; // Exit the loop if the user role is found
                 }
-            } else {
-                alert("User does not exist");
             }
+            alert("User does not exist");
+            
         } catch (error) {
             console.error("Error logging in: ", error);
             alert("Login failed: " + error.message);

@@ -63,7 +63,7 @@ body {
   margin-left: 5rem;
 }
 
-.logout {
+.signup {
   background-color: #268be9;
   color: #fff;
   padding: 10px 20px;
@@ -74,7 +74,7 @@ body {
   font-weight: 600;
 }
 
-.login {
+.signin {
   background-color: #d8edff;
   color: #268be9;
   padding: 10px 20px;

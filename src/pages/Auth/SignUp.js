@@ -7,6 +7,9 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FirebaseError } from 'firebase/app';
 import { Link } from 'react-router-dom';
+import { useAuthValue } from '../../contex/AuthContext';
+import { useHistory } from 'react-router-dom';
+
 
 
 
@@ -18,6 +21,9 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [confirmpassword, setConfirmPassword] = useState('');
     const [formError, setFormError] = useState('');
+    const { setTimeActive } = useAuthValue();
+    const history = useHistory();
+
 
 
     const isEmptyValue = (value) => {
@@ -91,6 +97,8 @@ const SignUp = () => {
                 // Sử dụng Firebase Auth để tạo tài khoản mới
                 const userCredential = await createUserWithEmailAndPassword(auth, username, password);
                 console.log("User created: ", userCredential.user);
+                //setTimeActive(true);
+
                 // const firstname = "Test";
                 // const lastname = "Thu thoi";
                 // Tùy chọn: Lưu thông tin người dùng vào Firestore
@@ -108,6 +116,7 @@ const SignUp = () => {
                     // Bạn có thể thêm thêm thông tin tại đây
                 });
                 alert('User added successfully');
+                history.push('/signin');
 
             } catch (error) {
                 // Hiển thị thông tin lỗi trong console

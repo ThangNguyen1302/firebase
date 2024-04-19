@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom';
 const Navbar = () => {
     const history = useHistory(); // Access history object
 
-    const handleLogin = () => {
-        history.push("/login"); // Navigate to the login page
+    const handleSigin = () => {
+        history.push("/signin"); // Navigate to the signin page
     };
 
     const handleSignUp = () => {
@@ -36,8 +36,8 @@ const Navbar = () => {
                             <p  onClick={() => handleScrollToSection("doctors")}>Doctors</p>
                         </div>
                         <div className='button-group'>
-                            <button className='login' onClick={handleLogin}>Login</button>
-                            <button className='logout' onClick={handleSignUp}>Sign Up</button>
+                            <button className='signin' onClick={handleSigin}>Sign in</button>
+                            <button className='signup' onClick={handleSignUp}>Sign Up</button>
                         </div>
                         
                     </div>
