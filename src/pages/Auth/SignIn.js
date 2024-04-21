@@ -46,7 +46,7 @@ const SignIn = () => {
                 if (userDoc.exists()) {
                     alert(r + ' logged in successfully');
                     if (r === 'admin') {
-                        history.push('/admin');
+                        history.push('/administrator');
                     } else if (r === 'doctor') {
                         history.push('/doctor');
                     } else {

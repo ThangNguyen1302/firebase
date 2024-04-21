@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
+
+/* body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  color: #eaecef;
+}*/
+
+header {
+  display: flex;
+  text-align: center;
+  padding: 20px;
+  background: #3498db;
+  height: 30px;
+}
+
+header .name {
+  height: 30px;
+  padding-left: 20px;
+}
+
+.logo_2 {
+  width: 60px;
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  display: block;
+}
+
+.center {
+  display: flex;
+} 
+
+.sidenav {
+  width: 240px;
+  background: #011627;
+  position: absolute;
+  height: 95vh;
+  padding: 0 30px;
+  left: -100%;
+  transition: all 1s;
+}
+
+.sidenav.active {
+  left: 0;
+}
+
+ul {
+  padding: 0;
+}
+
+ul li {
+  list-style-type: none;
+  margin: 10px 0;
+}
+
+.logo {
+  padding-top: 15px;
+  width: 60px;
+}
+
+ul li a {
+  color: #eaecef;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 6px;
+}
+
+ul li a:hover, ul li a:active {
+  background:#172b4d;
+}
+
+header svg {
+  font-size: 40px;
+}
+
+.content-tabs {
+  position: absolute;
+  padding: 30px 30px;
+  width: 100%;
+  max-width: 1400px;
+  left: 0px;
+  transition: all 1s;
+}
+
+.content-tabs.active {
+  left: 300px;
+  width: 70%;
+}
+
+.tabs.active {
+  background: #3498db;
+}
+
+.content {
+  display: none;
+} 
+
+.content.active {
+  display: block;
+}
+
+.addDoctor {
+  margin: 10px 10px;
+  padding: 10px 10px;
+}
+
+table {
+  margin: auto; /* Thêm dòng này để căn giữa table */
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: left;
+  color: black;
+}
+
+th {
+  background-color: #3498db;
+  color: white;
+}

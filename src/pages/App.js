@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Profile from './Profile/Profile.js'
 //Import Auth
@@ -17,7 +16,7 @@ import AppointmentA from './Appointment/AppointmentA'
 import AppointmentB from './Appointment/AppointmentB'
 import HomePage from './HomePage/HomePage.js';
 import Patient from './Patient/Patient.js';
-// import Navbar from '../Navbar.js';
+import Administrator from './Administrator/Administrator.js';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -42,6 +41,7 @@ function App() {
           {/* <Route exact path='/verify-email' component={VerifyEmail} /> */}
           <Route exact path="/" component={HomePage} />
           {/* <Route exact path="/" /> */}
+          <PrivateRoute exact path='/administrator' component={Administrator} />
           <PrivateRoute exact path='/patient' component={Patient} />
           <PrivateRoute exact path='/appointmentA' component={AppointmentA} />
           <PrivateRoute exact path='/appointmentB' component={AppointmentB} />
