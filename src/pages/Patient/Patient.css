@@ -1,0 +1,30 @@
+.user{
+  overflow: hidden;
+  margin-left: 10rem;
+}
+
+.user-icon{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: block;  
+}
+
+.dropdown{
+  color: black;
+  background-color: aliceblue;
+  display: none;
+  position: absolute;
+  min-width: 100px;
+  z-index: 1;
+}
+
+.dropdown p{
+  padding: 12px;
+  text-decoration: none;
+  display: block;
+}
+
+.user:hover .dropdown{
+  display: block;
+}

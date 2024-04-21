@@ -50,7 +50,7 @@ const SignIn = () => {
                     } else if (r === 'doctor') {
                         history.push('/doctor');
                     } else {
-                        history.push('/profile');
+                        history.push('/patient');
                     }
                     return; // Exit the loop if the user role is found
                 }

@@ -8,7 +8,7 @@ import PasswordReset from './Auth/PasswordReset.js';
 import ChangePassword from './Auth/ChangePassword.js';
 import { auth } from './services/firebase-config.js';
 
-import { AuthProvider } from '../contex/AuthContext'
+import { AuthProvider } from '../context/AuthContext.js'
 import { useState, useEffect } from 'react'
 // import { auth } from './firebase'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -16,6 +16,7 @@ import PrivateRoute from '../PrivateRoute'
 import AppointmentA from './Appointment/AppointmentA'
 import AppointmentB from './Appointment/AppointmentB'
 import HomePage from './HomePage/HomePage.js';
+import Patient from './Patient/Patient.js';
 // import Navbar from '../Navbar.js';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           {/* <Route exact path='/verify-email' component={VerifyEmail} /> */}
           <Route exact path="/" component={HomePage} />
           {/* <Route exact path="/" /> */}
+          <PrivateRoute exact path='/patient' component={Patient} />
           <PrivateRoute exact path='/appointmentA' component={AppointmentA} />
           <PrivateRoute exact path='/appointmentB' component={AppointmentB} />
           <PrivateRoute exact path='/profile' component={Profile} />

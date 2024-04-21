@@ -1,6 +1,6 @@
 import './profile.css'
 import { useEffect, useState } from 'react';
-import { useAuthValue } from '../../contex/AuthContext';
+import { useAuthValue } from '../../context/AuthContext';
 import { signOut } from 'firebase/auth';
 import { auth, db } from '../services/firebase-config';
 import { collection, query, where, getDocs } from "firebase/firestore";

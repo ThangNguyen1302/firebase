@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { db } from '../services/firebase-config';
 import { getDoc, updateDoc, doc } from "firebase/firestore"; // Import các biến và hàm từ Firebase Firestore
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { useAuthValue } from '../../contex/AuthContext';
+import { useAuthValue } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 
 

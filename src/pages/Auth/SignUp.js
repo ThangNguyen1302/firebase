@@ -7,7 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FirebaseError } from 'firebase/app';
 import { Link } from 'react-router-dom';
-import { useAuthValue } from '../../contex/AuthContext';
+import { useAuthValue } from '../../context/AuthContext';
 import { useHistory } from 'react-router-dom';
 
 

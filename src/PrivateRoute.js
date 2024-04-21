@@ -1,5 +1,5 @@
 import {Route, Redirect} from 'react-router-dom'
-import {useAuthValue} from './contex/AuthContext'
+import {useAuthValue} from './context/AuthContext'
 
 export default function PrivateRoute({component:Component, ...rest}) {
   const {currentUser} = useAuthValue()
