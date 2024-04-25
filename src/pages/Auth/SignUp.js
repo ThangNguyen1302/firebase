@@ -111,8 +111,9 @@ const SignUp = () => {
                 // console.log("Document written with ID: ", docRef.id);
                 const userRef = doc(db, "users", userCredential.user.uid); // Lấy uid làm ID document
                 await setDoc(userRef, {
+                    uid: userCredential.user.uid,
+                    appointments: [],
                     username: username,
-                    role: 'user', // Thêm vai trò người dùng
                     // Bạn có thể thêm thêm thông tin tại đây
                 });
                 alert('User added successfully');

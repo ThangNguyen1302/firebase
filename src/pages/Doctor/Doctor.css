@@ -1,0 +1,4 @@
+.list .patientName:hover{
+  cursor: pointer;
+  color: rgb(8, 119, 194);
+}

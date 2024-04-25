@@ -12,11 +12,12 @@ import { useState, useEffect } from 'react'
 // import { auth } from './firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import PrivateRoute from '../PrivateRoute'
-import AppointmentA from './Appointment/AppointmentA'
-import AppointmentB from './Appointment/AppointmentB'
 import HomePage from './HomePage/HomePage.js';
 import Patient from './Patient/Patient.js';
 import Administrator from './Administrator/Administrator.js';
+import PAppointment from './Patient/components/Appointment.js';
+import Doctor from './Doctor/Doctor.js';
+import DAppointment from './Doctor/components/Appointment.js';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -37,14 +38,12 @@ function App() {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/password-reset" component={PasswordReset} />
           <Route exact path="/change-password" component={ChangePassword} />
-          {/* <Route exact path="/signin" component={Test} /> */}
-          {/* <Route exact path='/verify-email' component={VerifyEmail} /> */}
           <Route exact path="/" component={HomePage} />
-          {/* <Route exact path="/" /> */}
+          <PrivateRoute exact path='/doctor' component={Doctor} />
+          <PrivateRoute exact path="/dappointment" component={DAppointment} />
           <PrivateRoute exact path='/administrator' component={Administrator} />
           <PrivateRoute exact path='/patient' component={Patient} />
-          <PrivateRoute exact path='/appointmentA' component={AppointmentA} />
-          <PrivateRoute exact path='/appointmentB' component={AppointmentB} />
+          <PrivateRoute exact path="/pappointment" component={PAppointment} />
           <PrivateRoute exact path='/profile' component={Profile} />
         </Switch>
       </AuthProvider>

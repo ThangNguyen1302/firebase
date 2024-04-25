@@ -29,7 +29,7 @@ const PatientNavbar = () => {
     };
 
     const handleAppointment = () => {
-        history.push("/pappointment"); // Navigate to the appointment page
+        history.push("/dappointment"); // Navigate to the appointment page
     };
 
     const handelProfile = () => {
