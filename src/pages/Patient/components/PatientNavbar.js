@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import {signOut} from 'firebase/auth';
 import { useAuthValue } from '../../../context/AuthContext';
 import user from '../../images/user.png';
-
+import { auth } from '../../services/firebase-config';
 
 const PatientNavbar = () => {
     const { currentUser } = useAuthValue(); // Get the current user
     const history = useHistory(); // Access history object
+    const location = history.location.pathname; // Get the current location
+
+    const isPatient = location === "/patient"; // Check if the user is on the patient page
 
     const handleSigin = () => {
         history.push("/signin"); // Navigate to the signin page
@@ -33,13 +36,18 @@ const PatientNavbar = () => {
     };
 
     const handelProfile = () => {
-        history.push("/profile"); // Navigate to the profile page
+        history.push("/patientProfile"); // Navigate to the profile page
     };
 
     const handleSignOut = () => {
-        signOut(currentUser); // Sign out the user
+        signOut(auth); // Sign out the user
         history.push("/"); // Navigate to the home page
     };
+
+    const handelPatient = () => {
+        history.push("/patient"); // Navigate to the patient page
+    };
+
     return (
         <div className='header'>
             <div className="container">
@@ -48,10 +56,10 @@ const PatientNavbar = () => {
                     <div className="menu-icon">
                         <h2 className="logo" onClick={() => handleScrollToSection("home")}>HCMUT</h2>
                         <div className='menu-icon-control'>
-                            <p  onClick={() => handleScrollToSection("home")}>Home</p>
-                            <p  onClick={() => handleScrollToSection("services")}>Services</p>
-                            <p  onClick={() => handleScrollToSection("about")}>About</p>
-                            <p  onClick={() => handleScrollToSection("doctors")}>Doctors</p>
+                            <p  onClick={isPatient ? () => handleScrollToSection("home") : handelPatient }>Home</p>
+                            <p  onClick={isPatient ? () => handleScrollToSection("services") : handelPatient}>Services</p>
+                            <p  onClick={isPatient ? () => handleScrollToSection("about") : handelPatient}>About</p>
+                            <p  onClick={isPatient ? () => handleScrollToSection("doctors") : handelPatient}>Doctors</p>
                             <p onClick={handleAppointment}>Appointment</p>
                         </div>
                         <div className='user'>

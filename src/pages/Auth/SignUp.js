@@ -114,6 +114,7 @@ const SignUp = () => {
                     uid: userCredential.user.uid,
                     appointments: [],
                     username: username,
+                    history: [],
                     // Bạn có thể thêm thêm thông tin tại đây
                 });
                 alert('User added successfully');

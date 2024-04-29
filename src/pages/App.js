@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Profile from './Profile/Profile.js'
 //Import Auth
 import SignIn from './Auth/SignIn';
 import SignUp from './Auth/SignUp';
@@ -18,6 +17,11 @@ import Administrator from './Administrator/Administrator.js';
 import PAppointment from './Patient/components/Appointment.js';
 import Doctor from './Doctor/Doctor.js';
 import DAppointment from './Doctor/components/Appointment.js';
+import DoctorProfile from './Doctor/components/DoctorProfile.js';
+import UpdatePatient from './Doctor/components/UpdatePatient.js';
+import UpdateMedicine from './Doctor/components/UpdateMedicine.js';
+import MyPatient from './Doctor/components/Mypatient/MyPatient.js';
+import PatientProfile from './Patient/components/PatientProfile.js';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -39,12 +43,20 @@ function App() {
           <Route exact path="/password-reset" component={PasswordReset} />
           <Route exact path="/change-password" component={ChangePassword} />
           <Route exact path="/" component={HomePage} />
+          
           <PrivateRoute exact path='/doctor' component={Doctor} />
           <PrivateRoute exact path="/dappointment" component={DAppointment} />
+          <PrivateRoute exact path="/doctorProfile" component={DoctorProfile} />
+          <PrivateRoute exact path="/updatepatient" component={UpdatePatient} />
+          <PrivateRoute exact path="/updatemedicine" component={UpdateMedicine} />
+          <PrivateRoute exact path="/mypatient" component={MyPatient} />
+
           <PrivateRoute exact path='/administrator' component={Administrator} />
+
           <PrivateRoute exact path='/patient' component={Patient} />
           <PrivateRoute exact path="/pappointment" component={PAppointment} />
-          <PrivateRoute exact path='/profile' component={Profile} />
+          <PrivateRoute exact path="/patientProfile" component={PatientProfile} />
+
         </Switch>
       </AuthProvider>
     </Router>
