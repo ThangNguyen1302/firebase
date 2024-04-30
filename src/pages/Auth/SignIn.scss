@@ -1,7 +1,7 @@
 .login-background {
-    background: #a4508b;
+    background: #008DDA;
     /* Màu gradient từ hình ảnh gốc */
-    background: linear-gradient(90deg, #a4508b 0%, #5f0a87 100%);
+    background: linear-gradient(90deg, #41C9E2 0%, #008DDA 100%);
     /* Gradient nâng cao */
     display: flex;
     align-items: center;
@@ -120,7 +120,7 @@
                 font-weight: 600;
 
                 &:hover {
-                    background-color: darken(rgba(200, 120, 200, 0.8), 10%);
+                    background-color: darken(rgb(172, 226, 225), 10%);
                 }
             }
 

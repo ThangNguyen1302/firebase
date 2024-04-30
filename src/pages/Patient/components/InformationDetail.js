@@ -13,7 +13,7 @@ const InformationDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userRef = doc(db, "user", currentUser.uid);
+        const userRef = doc(db, "users", currentUser.uid);
         console.log(currentUser.uid);
         const userDoc = await getDoc(userRef);
         const data = userDoc.data();
@@ -31,15 +31,15 @@ const InformationDetail = () => {
     <div>
       <h1>Information Detail</h1>
 
-      {userData && userData.information ? (
+      {userData? (
         
           <div >
-            <p>Name: {userData.information.name} </p>
-            <p>Age: {userData.information.age} </p>
-            <p>Gender: {userData.information.gender}</p>
-            <p>Insurance code: {userData.information.insurance}</p>
-            <p>Address: {userData.information.address}</p>
-            <p>Email: {userData.information.email}</p>
+            <p>Name: {userData.username} </p>
+            <p>Age: {userData.age} </p>
+            <p>Gender: {userData.gender}</p>
+            <p>Insurance code: {userData.insurance}</p>
+            <p>Address: {userData.address}</p>
+            <p>Email: {userData.email}</p>
             
           </div>
       ) : (

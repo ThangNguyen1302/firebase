@@ -39,7 +39,7 @@ const UpdatePatientInformation =  () => {
         console.log('currentUser: ',currentUser);
         try{
             //Lấy dữ liệu từ firestore
-            const userRef = doc(db, 'user', currentUser.uid);
+            const userRef = doc(db, 'users', currentUser.uid);
             console.log('userRef:',userRef);
             const userDoc = await getDoc(userRef);
             console.log('userDoc:',userDoc);
@@ -49,17 +49,16 @@ const UpdatePatientInformation =  () => {
             if(isDefine(userDoc,name,age,gender,insurance,email)){
                 const updatedUserData={
                     ...userData,
-                    information:{
-                        name: name,
+                        username: name,
                         age: age,
                         gender: gender,
                         insurance: insurance,
                         email: email,
                         address:address
-                    }};
+                    };
                     
                 await updateDoc(userRef,updatedUserData);
-                console.log('Patient information updated successfully!');
+                alert('Patient Information Updated Successfully');
             }}
             catch( error){
                 console.error('Error updating Patient Information:',error);
@@ -71,7 +70,7 @@ const UpdatePatientInformation =  () => {
           };
 
         return (
-            <div>
+            <div className='updatePatient'>
             <h1><strong>Update Information</strong></h1>
             <form onSubmit={setInformationDetail}>
                 <div className='row'>

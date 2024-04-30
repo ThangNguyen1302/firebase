@@ -12,7 +12,7 @@ const TreatmentHistory = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userRef = doc(db, "user", currentUser.uid);
+        const userRef = doc(db, "users", currentUser.uid);
         console.log(currentUser.uid);
         const userDoc = await getDoc(userRef);
         const data = userDoc.data();
@@ -25,6 +25,9 @@ const TreatmentHistory = () => {
     };
     fetchData();
   }, [currentUser]);
+  const isValidHistory = (e) => {
+
+  };
 
   return (
     <div>
@@ -37,7 +40,7 @@ const TreatmentHistory = () => {
             <p>Diagnosis: {history.Diagnosis} </p>
             <p>Health status: {history.Health_status} </p>
             <p>Treatment: {history.Treatments} </p>
-
+            <p>Doctor: {history.DoctorName} </p>
             
           </div>
         ))

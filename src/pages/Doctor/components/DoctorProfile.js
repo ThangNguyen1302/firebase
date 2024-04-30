@@ -125,7 +125,7 @@ function Profile() {
               </div>
               {userProfile && (
                 <div className='infor'>
-                  <p> {userProfile.username}</p>
+                  <p> {userProfile.email}</p>
                   <p> {userProfile.name}</p>
                   <p> {userProfile.birth}</p>
                   <p> {userProfile.major}</p>

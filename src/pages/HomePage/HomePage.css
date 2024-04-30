@@ -84,12 +84,12 @@ body {
   font-weight: 600;
 }
 
-.login:hover {
+.signin:hover {
   background-color: #1e70e3;
   color: #fff;
 }
 
-.logout:hover {
+.signup:hover {
   background-color: #d8edff;
   color: #1e70e3;
   border: 2px solid #268be9;

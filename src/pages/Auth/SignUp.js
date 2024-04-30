@@ -18,6 +18,7 @@ import { useHistory } from 'react-router-dom';
 
 const SignUp = () => {
     const [username, setUsername] = useState('');
+    const [mail, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmpassword, setConfirmPassword] = useState('');
     const [formError, setFormError] = useState('');
@@ -34,13 +35,16 @@ const SignUp = () => {
     }
     const validateForm = () => {
         const error = {};
-        if (isEmptyValue(username)) {
-            error["username"] = "Username is required";
+        if (isEmptyValue(mail)) {
+            error["mail"] = "Email is required";
         }
         else {
-            if (!isEmailValid(username)) {
-                error["username"] = "Username is invalid";
+            if (!isEmailValid(mail)) {
+                error["mail"] = "Email is invalid";
             }
+        }
+        if (isEmptyValue(username)) {
+            error["username"] = "Username is required";
         }
         if (isEmptyValue(password)) {
             error["password"] = "Password is required";
@@ -66,6 +70,9 @@ const SignUp = () => {
     };
     const handleOnChangeConfirmPassword = (event) => {
         setConfirmPassword(event.target.value);
+    };
+    const handleOnChangeEmail = (event) => {
+        setEmail(event.target.value);
     };
 
     // const handleForgotPassword = async () => {
@@ -95,7 +102,7 @@ const SignUp = () => {
             try {
 
                 // Sử dụng Firebase Auth để tạo tài khoản mới
-                const userCredential = await createUserWithEmailAndPassword(auth, username, password);
+                const userCredential = await createUserWithEmailAndPassword(auth, mail, password);
                 console.log("User created: ", userCredential.user);
                 //setTimeActive(true);
 
@@ -109,11 +116,12 @@ const SignUp = () => {
                 //     lastname: lastname,
                 // });
                 // console.log("Document written with ID: ", docRef.id);
-                const userRef = doc(db, "users", userCredential.user.uid); // Lấy uid làm ID document
+                const userRef = doc(db, "doctor", userCredential.user.uid); // Lấy uid làm ID document
                 await setDoc(userRef, {
                     uid: userCredential.user.uid,
                     appointments: [],
                     username: username,
+                    email: mail,
                     history: [],
                     // Bạn có thể thêm thêm thông tin tại đây
                 });
@@ -149,6 +157,16 @@ const SignUp = () => {
                             onChange={handleOnChangeUsername}
                         />
                         {formError.username && <div className="error-message">{formError.username}</div>}
+                    </div>
+                    <div className="form-group login-input">
+                        <input
+                            type="mail"
+                            className="form-control"
+                            placeholder="Email"
+                            value={mail}
+                            onChange={handleOnChangeEmail}
+                        />
+                        {formError.mail && <div className="error-message">{formError.mail}</div>}
                     </div>
                     <div className="form-group login-input">
                         <input
