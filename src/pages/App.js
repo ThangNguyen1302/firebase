@@ -22,6 +22,9 @@ import UpdatePatient from './Doctor/components/UpdatePatient.js';
 import UpdateMedicine from './Doctor/components/UpdateMedicine.js';
 import MyPatient from './Doctor/components/Mypatient/MyPatient.js';
 import PatientProfile from './Patient/components/PatientProfile.js';
+import ManageDevice from './Administrator/components/Contents/ManageDevices/ManageDevice.js';
+import ManageDoctors from './Administrator/components/Contents/ManageDoctors/ManageDoctors.js';
+import ManageMedicine from './Administrator/components/Contents/ManageMedicines/ManageMedicine.js';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -52,6 +55,9 @@ function App() {
           <PrivateRoute exact path="/mypatient" component={MyPatient} />
 
           <PrivateRoute exact path='/administrator' component={Administrator} />
+          <PrivateRoute exact path="/managedevice" component={ManageDevice} />
+          <PrivateRoute exact path="/managedoctors" component={ManageDoctors} />
+          <PrivateRoute exact path="/managemedicine" component={ManageMedicine} />
 
           <PrivateRoute exact path='/patient' component={Patient} />
           <PrivateRoute exact path="/pappointment" component={PAppointment} />

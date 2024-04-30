@@ -24,7 +24,7 @@ const Navbar = () => {
 
     return (
         <div className='header'>
-            <div className="container">
+            <div className="navbar-container">
                 <nav>
                     
                     <div className="menu-icon">
