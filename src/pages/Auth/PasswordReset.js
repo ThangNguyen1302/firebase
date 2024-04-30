@@ -54,7 +54,7 @@ const PasswordReset = () => {
                         />
                     </div>
                     <div className="col-12">
-                        <button class="button-change-password" onClick={handleSubmit}>Send Reset Email</button>
+                        <button class="button-change-password" onClick={handleSubmit}>Send Reset Password</button>
                     </div>
                 </div>
             </div>

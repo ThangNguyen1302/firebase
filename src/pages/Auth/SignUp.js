@@ -116,7 +116,7 @@ const SignUp = () => {
                 //     lastname: lastname,
                 // });
                 // console.log("Document written with ID: ", docRef.id);
-                const userRef = doc(db, "doctor", userCredential.user.uid); // Lấy uid làm ID document
+                const userRef = doc(db, "users", userCredential.user.uid); // Lấy uid làm ID document
                 await setDoc(userRef, {
                     uid: userCredential.user.uid,
                     appointments: [],

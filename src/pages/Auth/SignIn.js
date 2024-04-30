@@ -22,12 +22,12 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 const SignIn = () => {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const history = useHistory();
     // const dispatch = useDispatch();
-    const handleOnChangeUsername = (event) => {
-        setUsername(event.target.value);
+    const handleOnChangeEmail = (event) => {
+        setEmail(event.target.value);
     };
 
     const handleOnChangePassword = (event) => {
@@ -36,7 +36,7 @@ const SignIn = () => {
 
     const handleSignIn = async () => {
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, username, password);
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const userId = userCredential.user.uid;
             const role = ['admin', 'users', 'doctor']
             //Lấy thông in vai trò từ Firestore
@@ -73,9 +73,9 @@ const SignIn = () => {
                         <input
                             type="text"
                             className="form-control"
-                            placeholder="Username"
-                            value={username}
-                            onChange={handleOnChangeUsername}
+                            placeholder="Email"
+                            value={email}
+                            onChange={handleOnChangeEmail}
                         />
                         <i class='bx bxs-user'></i>
                     </div>

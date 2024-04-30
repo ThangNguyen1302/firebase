@@ -153,7 +153,7 @@ body {
     z-index: 999;
      width: 70%;  /* Điều chỉnh chiều rộng của form */
     max-width: 700px; /* Giới hạn chiều rộng tối đa */
-    height: 70%; /* Điều chỉnh chiều cao của form */
+    height: 85%; /* Điều chỉnh chiều cao của form */
     max-height: 700px; /* Giới hạn chiều cao tối đa */
     overflow-y: auto; /* Hiển thị thanh cuộn nếu nội dung quá dài */
   }
@@ -186,12 +186,21 @@ body {
     border-radius: 5px;
     box-sizing: border-box;
   }
+
+  .doctor .modal select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
   
   
   .doctor .modal button {
     width: 100%;
     padding: 10px;
-    background-color: #4caf50;
+    background-color: #008DDA ;
     color: white;
     border: none;
     border-radius: 5px;
@@ -199,7 +208,7 @@ body {
   }
   
   .doctor .modal button:hover {
-    background-color: #45a049;
+    background-color: #41C9E2;
   }
   
   .doctor .close {

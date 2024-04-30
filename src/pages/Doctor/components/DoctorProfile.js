@@ -14,8 +14,10 @@ function Profile() {
   const { currentUser } = useAuthValue();
   const [userProfile, setUserProfile] = useState(null);
   const [editingProfile, setEditingProfile] = useState(false);
+
   const [editedProfile, setEditedProfile] = useState({
     name: '',
+    gender: '',
     birth: '',
     major: '',
     email: ''
@@ -41,6 +43,7 @@ function Profile() {
     setEditedProfile({ ...editedProfile, [e.target.name]: e.target.value });
   };
 
+  
   const handleCloseForm = () => {
     setEditingProfile(false);
   }
@@ -89,6 +92,20 @@ function Profile() {
                       />
                     </div>
                     <div className="form-group">
+                      <label htmlFor="gender">Gender:</label>
+                      <select
+                        id="gender"
+                        name="gender"
+                        placeholder="Gender"
+                        value={editedProfile.gender}
+                        onChange={handleInputChange}
+                      >
+                        <option value="">-- Select gender --</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                    </div>
+                    <div className="form-group">
                       <label htmlFor="birth">Birth:</label>
                       <input
                         id="birth"
@@ -120,6 +137,7 @@ function Profile() {
               <div className='in4'>
                   <p>Email: </p>
                   <p>Name: </p>
+                  <p>Gender: </p>
                   <p>Birth: </p>
                   <p>Majoring: </p>
               </div>
@@ -127,6 +145,7 @@ function Profile() {
                 <div className='infor'>
                   <p> {userProfile.email}</p>
                   <p> {userProfile.name}</p>
+                  <p> {userProfile.gender}</p>
                   <p> {userProfile.birth}</p>
                   <p> {userProfile.major}</p>
                 </div>
