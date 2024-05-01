@@ -2,15 +2,15 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import './ManageDoctors.css';
 import { collection, addDoc, onSnapshot, getDocs, deleteDoc, doc } from 'firebase/firestore';
-import { getFirestore } from 'firebase/firestore';
-import { db } from '../../../../services/firebase-config';
+import { db } from '../../../../services/firebase-config'; 
 import { CiTrash } from "react-icons/ci";
 import AdminNavbar from '../../AdminNavbar';
-
+import { useHistory } from 'react-router-dom';
 
 const ManageDoctors = () => {
-    const [title, setTitle] = useState(['STT', 'Tên', 'Email', 'SĐT', 'Giới Tính', 'Ngày Sinh', 'Chuyên Môn', 'Trạng Thái', 'UID']);
+    const [title, setTitle] = useState(['Order', 'Name', 'Email', 'Phone Number', 'Gender', 'Day Of Birth', 'Major', 'Status', 'UID']);
     const [doctors, setDoctors] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -52,15 +52,19 @@ const ManageDoctors = () => {
         }
     };
 
-    function formatDate(date) {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        return date.toLocaleDateString('en-US', options);
-    }
+    const formatDate = (dateString) => {
+        const [day, month, year] = dateString.split('/');
+        return `${day}/${month}/${year}`;
+    };
+
+    const handleAddDoctor = () => {
+        history.push('/signupdoc');
+    };
     return (
         <div>
             <AdminNavbar />
             <div class="managerDoctor">
-                <a id="newDoctor" href="#">Thêm Mới</a>
+                <button onClick={handleAddDoctor}>Add Doctor</button>
             </div>
             <table>
                 <thead>
@@ -74,14 +78,14 @@ const ManageDoctors = () => {
                     {doctors.map((item, index) => (
                         <tr key={index}>
                             <td>{index + 1}</td>
-                            <td>{item.Name}</td>
-                            <td>{item.Email}</td>
-                            <td>{item.PhoneNumber}</td>
-                            <td>{item.Sex === true? "Nam" : "Nữ"}</td>
-                            <td>{formatDate(new Date(item.DateOfBirth.seconds * 1000))}</td>
-                            <td>{item.Expertise}</td>
-                            <td>{item.Status === true? "Sẵn sàng" : "Bận"}</td>
-                            <td>{item.UID}</td>
+                            <td>{item.name}</td>
+                            <td>{item.email}</td>
+                            <td>{item.phonenumber}</td>
+                            <td>{item.gender === true? "Male" : "Female"}</td>
+                            <td>{formatDate(item.birth)}</td>
+                            <td>{item.major}</td>
+                            <td>{item.status === true? "Ready" : "Busy"}</td>
+                            <td>{item.uid}</td>
                             <td>
                                 <CiTrash
                                     style={{ fontSize: '24px', color: 'red', cursor: 'pointer' }}

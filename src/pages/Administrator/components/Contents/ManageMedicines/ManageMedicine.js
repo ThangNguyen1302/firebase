@@ -212,8 +212,10 @@ const ManageMedicine = () => {
   };
 
   return (
-    <div className="medicine-container">
+    <div>
       <AdminNavbar />
+    <div className="medicine-container">
+      
       <div className="search-container">
         <input
           type="text"
@@ -329,6 +331,7 @@ const ManageMedicine = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };

@@ -34,4 +34,16 @@
     background-color: #2ecc71; 
     color: white; 
 }
-  
+
+.login-background .back{
+    font-size: 14.5px;
+    text-align: center;
+    margin-top: 20px;
+
+
+}
+
+.login-background .back:hover {
+    color: #636464;
+    cursor: pointer;
+}

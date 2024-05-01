@@ -94,40 +94,40 @@ function ManageDevice() {
   return (
     <div className="manangerDevice">
       <AdminNavbar />
-      <h1>Quản Lý Thiết Bị Bệnh Viện</h1>
+      <h1>Device managerment</h1>
       <input
         type="text"
-        placeholder="Tìm kiếm thiết bị"
+        placeholder="Device searching..."
         value={searchTerm}
         onChange={handleSearchChange}
       />
-      <button onClick={handleSearch}>Tìm Kiếm</button>
-      <button onClick={() => setShowDeviceForm(true)}>Thêm Thiết Bị</button>
+      <button onClick={handleSearch}>Search</button>
+      <button onClick={() => setShowDeviceForm(true)}>Add Device</button>
       {showDeviceForm && (
         <div className="modal">
           <div className="modal-content">
             <form onSubmit={handleFormSubmit} className="device-form">
               <input
                 name="deviceName"
-                placeholder="Tên thiết bị"
+                placeholder="Device Name"
                 value={deviceInfo.deviceName}
                 onChange={handleInputChange}
               />
               <input
                 name="deviceType"
-                placeholder="Loại thiết bị"
+                placeholder="Device Type"
                 value={deviceInfo.deviceType}
                 onChange={handleInputChange}
               />
               <input
                 name="deviceID"
-                placeholder="Số hiệu thiết bị"
+                placeholder="deviceID"
                 value={deviceInfo.deviceID}
                 onChange={handleInputChange}
               />
               <input
                 name="deviceStatus"
-                placeholder="Trạng thái thiết bị"
+                placeholder="Device Status"
                 value={deviceInfo.deviceStatus}
                 onChange={handleInputChange}
               />
@@ -137,7 +137,7 @@ function ManageDevice() {
                 value={deviceInfo.manufactureDate}
                 onChange={handleInputChange}
               />
-              <button type="submit">Lưu Thiết Bị</button>
+              <button type="submit">Save Device</button>
             </form>
             <span className="close" onClick={handleCloseForm}>
               &times;
@@ -150,10 +150,10 @@ function ManageDevice() {
           <div key={device.id} className="device-item">
             <div className="device-details">
               <h2>{device.deviceName}</h2>
-              <p>Loại: {device.deviceType}</p>
-              <p>Số hiệu: {device.deviceID}</p>
-              <p>Trạng thái: {device.deviceStatus}</p>
-              <p>Ngày sản xuất: {device.manufactureDate}</p>
+              <p>Type: {device.deviceType}</p>
+              <p>deviceID: {device.deviceID}</p>
+              <p>Status: {device.deviceStatus}</p>
+              <p>Manufacture Date: {device.manufactureDate}</p>
             </div>
             <div className="button-device">
               <button
@@ -162,9 +162,9 @@ function ManageDevice() {
                   setShowDeviceForm(true);
                 }}
               >
-                Chỉnh Sửa
+                Setting
               </button>
-              <button onClick={() => handleDeleteDevice(device.id)}>Xóa</button>
+              <button onClick={() => handleDeleteDevice(device.id)}>Delete</button>
             </div>
           </div>
         ))}

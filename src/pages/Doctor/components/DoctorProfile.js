@@ -20,7 +20,8 @@ function Profile() {
     gender: '',
     birth: '',
     major: '',
-    email: ''
+    email: '',
+    phoneNumber: '',
   });
 
   useEffect(() => {
@@ -125,6 +126,16 @@ function Profile() {
                         onChange={handleInputChange}
                       />
                     </div>
+                    <div className="form-group">
+                      <label htmlFor="phoneNumber">Phonenumber:</label>
+                      <input
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        placeholder="PhoneNumber"
+                        value={editedProfile.phoneNumber}
+                        onChange={handleInputChange}
+                      />
+                    </div>
                       <button type="submit">Save</button>
                   </form>
                   
@@ -140,6 +151,7 @@ function Profile() {
                   <p>Gender: </p>
                   <p>Birth: </p>
                   <p>Majoring: </p>
+                  <p>PhoneNumber</p>
               </div>
               {userProfile && (
                 <div className='infor'>
@@ -148,6 +160,7 @@ function Profile() {
                   <p> {userProfile.gender}</p>
                   <p> {userProfile.birth}</p>
                   <p> {userProfile.major}</p>
+                  <p> {userProfile.phoneNumber}</p>
                 </div>
               )}
             </div>
