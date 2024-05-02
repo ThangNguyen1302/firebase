@@ -114,9 +114,14 @@ const SignUpDoc = () => {
                 await setDoc(userRef, {
                     uid: userCredential.user.uid,
                     appointments: [],
-                    username: username,
+                    name: username,
                     email: mail,
                     history: [],
+                    gender: '',
+                    phonenumber: '',
+                    birth: '',
+                    status: true,
+
                     // Bạn có thể thêm thêm thông tin tại đây
                 });
                 alert('User added successfully');

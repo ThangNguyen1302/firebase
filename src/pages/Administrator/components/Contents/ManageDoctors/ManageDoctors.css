@@ -45,5 +45,143 @@
 
 .login-background .back:hover {
     color: #636464;
+    cursor: pointer;/* Styles for the body */
+    
+}
+
+.body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+    padding-bottom: 80px; /* Đảm bảo không bị che bởi footer */
+}
+
+/* Styles for the navbar */
+
+
+/* Styles for the main content */
+.ContainerAdminDoctor {
+    margin-top: 25px; /* Đảm bảo không bị che bởi navbar */
+    margin-bottom: 80px; /* Đảm bảo không bị che bởi footer */
+    text-align: center;
+}
+
+.body .Newdoctor{
+    margin: 2rem;
+    margin-right: 5rem;
+    margin-top: 3rem;
+    float: right;
+}
+
+/* Styles for buttons */
+.ContainerAdminDoctor button {
+    background-color: #008DDA;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     cursor: pointer;
 }
+
+.ContainerAdminDoctor button:hover {
+    background-color: #41C9E2;
+}
+
+/* Styles for tables */
+.ContainerAdminDoctor table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.Showinfor th, .Showinfor td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
+}
+
+.Showinfor tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.Showinfor th:hover {
+    background-color: transparent;
+}
+
+/* Styles for search input */
+/* Styles for search container */
+.Searching {
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+/* Styles for search input */
+.Searching input[type="text"] {
+    padding: 10px;
+    margin: 5px 0;
+    width: 30%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Styles for search dropdown */
+.Searching select {
+    padding: 10px;
+    width: 10%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+/* Styles for statistics */
+.Statistics {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.Statistics-heading {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #0066cc;
+}
+
+.Statistics select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 20%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.Statistics button {
+    padding: 8px 20px;
+    background-color: #008DDA;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Statistics button:hover {
+    background-color: #41C9E2;
+}
+
+.Statistics p {
+    margin: 10px 10px;
+    font-weight: bold;
+}
+
+/* Styles for footer */

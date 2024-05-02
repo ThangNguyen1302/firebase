@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from '../../../../services/firebase-config';
-import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc, onSnapshot } from "firebase/firestore";
 import "./ManageDevice.css";
 import AdminNavbar from '../../AdminNavbar';
 
@@ -17,35 +17,40 @@ function ManageDevice() {
   });
   const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
-    const fetchDevices = async () => {
-      const data = await getDocs(collection(db, "devices"));
-      const devices = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      setDeviceList(devices);
-      setFilteredDevices(devices);
-    };
-    fetchDevices();
+      const unsubscribe = onSnapshot(collection(db, "devices"), (snapshot) => {
+          const devices = [];
+          snapshot.forEach((doc) => {
+              devices.push({ ...doc.data(), id: doc.id });
+          });
+          setDeviceList(devices);
+          setFilteredDevices(devices);
+      });
+
+      // Clean up function to unsubscribe from the snapshot listener when component unmounts
+      return () => unsubscribe();
   }, []);
+
 
   const handleInputChange = (e) => {
     setDeviceInfo({ ...deviceInfo, [e.target.name]: e.target.value });
   };
 
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
+
 
   const handleCloseForm = () => {
     // Xử lý khi người dùng nhấp vào nút "x"
     setShowDeviceForm(false);
   };
 
-  const handleSearch = () => {
-    if (!searchTerm) {
+  const handleSearch = (e) => {
+    const term = e.target.value.toLowerCase();
+    setSearchTerm(term);
+    if (!term) {
       setFilteredDevices(deviceList);
       return;
     }
-    const filtered = deviceList.filter((device) =>
-      device.deviceName.toLowerCase().includes(searchTerm.toLowerCase())
+    const filtered = deviceList.filter(
+      (device) => device.deviceName.toLowerCase().includes(term)
     );
     setFilteredDevices(filtered);
   };
@@ -75,6 +80,7 @@ function ManageDevice() {
       }
       // Cập nhật giao diện ngay lập tức
       // Đóng form sau khi lưu
+      
       setShowDeviceForm(false);
     } catch (error) {
       console.error("Lỗi khi thêm hoặc cập nhật thiết bị:", error);
@@ -99,14 +105,14 @@ function ManageDevice() {
         type="text"
         placeholder="Device searching..."
         value={searchTerm}
-        onChange={handleSearchChange}
+        onChange={handleSearch}
       />
-      <button onClick={handleSearch}>Search</button>
+      {/* <button onClick={handleSearch}>Search</button> */}
       <button onClick={() => setShowDeviceForm(true)}>Add Device</button>
       {showDeviceForm && (
         <div className="modal">
           <div className="modal-content">
-            <form onSubmit={handleFormSubmit} className="device-form">
+            <form  onSubmit={handleFormSubmit} className="device-form">
               <input
                 name="deviceName"
                 placeholder="Device Name"
