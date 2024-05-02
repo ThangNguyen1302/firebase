@@ -30,7 +30,6 @@ const UpdatePatientInformation =  () => {
     const [age,setAge ]= useState('');
     const[gender,setGender]=useState('');
     const[insurance,setInsurance]=useState('');
-    const[email,setEmail]=useState('');
     const[address,setAddress]=useState('');
     const {currentUser}=useAuthValue();
     const history = useHistory(); 
@@ -46,14 +45,13 @@ const UpdatePatientInformation =  () => {
             const userData=userDoc.data(); // lấy dữ liệu hiện tại
 
             console.log('userData:',userData);
-            if(isDefine(userDoc,name,age,gender,insurance,email)){
+            if(isDefine(userDoc,name,age,gender,insurance)){
                 const updatedUserData={
                     ...userData,
                         username: name,
                         age: age,
                         gender: gender,
                         insurance: insurance,
-                        email: email,
                         address:address
                     };
                     
@@ -117,15 +115,7 @@ const UpdatePatientInformation =  () => {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 required
-                />
-                <br/>
-                <p>Email:</p>
-                <input
-                type='email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                />
+                />                
                 </div>
                 </div>
                 <br/>
