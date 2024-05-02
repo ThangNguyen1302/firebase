@@ -125,7 +125,7 @@ const SignUpDoc = () => {
                     // Bạn có thể thêm thêm thông tin tại đây
                 });
                 alert('User added successfully');
-                history.push('/signin');
+                history.push('/managedoctors');
 
             } catch (error) {
                 // Hiển thị thông tin lỗi trong console

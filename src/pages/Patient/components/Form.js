@@ -50,7 +50,7 @@ const AppointmentA = () => {
 
             const qDoctor = query(collection(db, 'doctor'));
             const doctorsQuerySnapshot = await getDocs(qDoctor);
-            const doctorsFilter = doctorsQuerySnapshot.docs.filter(doc => doc.data().appointments.date !== date && doc.data().appointments.time !== time);
+            const doctorsFilter = doctorsQuerySnapshot.docs.filter(doc =>doc.data().appointments == [] || doc.data().appointments.date !== date && doc.data().appointments.time !== time);
             
             let minAppointmentsDoctor;
             console.log('Doctors: ', doctorsFilter);
