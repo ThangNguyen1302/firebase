@@ -269,6 +269,7 @@ const ManageMedicine = () => {
           />
       
           <button type="submit" className="submit-button">Submit</button>
+          <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
           </form>
       </Modal>
       )}

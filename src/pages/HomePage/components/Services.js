@@ -20,7 +20,7 @@ const Services = () => {
               <div className='icon'>
                 <img src={icons1} alt="icon"/>
               </div>
-              <h2>Medical Divices</h2>
+              <h2>Medical Devices</h2>
               <p>Explore cutting-edge devices for better care.</p>
             </div>
             <div className="services-info">
