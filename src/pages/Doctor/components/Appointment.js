@@ -227,8 +227,8 @@ const Appointment = () => {
                 return appointment;
             });
             
-            if(doctorData.status === false && status === 'approve'){
-                await updateDoc(doctorRef, {status: true});
+            if(doctorData.status === true && status === 'approve'){
+                await updateDoc(doctorRef, {status: false});
             }
             setAppointments(updatedDoctorAppointments); // Cập nhật danh sách cuộc hẹn cục bộ
             // Cập nhật tài liệu người dùng với dữ liệu mới
