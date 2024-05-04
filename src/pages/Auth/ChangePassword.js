@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { auth } from '../services/firebase-config';
 import {  reauthenticateWithCredential, EmailAuthProvider, updatePassword } from "firebase/auth";
 import './ChangePassword.scss';
+import { useHistory } from 'react-router-dom';
 const ChangePassword = () => {
     const [email, setEmail] = useState('');
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const history = useHistory();
 
     const handleChangePassword = async (event) => {
         event.preventDefault();
@@ -22,6 +24,7 @@ const ChangePassword = () => {
             await reauthenticateWithCredential(user, credential);
             await updatePassword(user, newPassword);
             alert("Password has been changed successfully.");
+            history.push('/');
         } catch (error) {
             alert(`Failed to change password: ${error.message}`);
         }

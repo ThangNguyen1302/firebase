@@ -10,8 +10,8 @@ const PatientDetail = ({ patient }) => {
         const fetchPatientData = async () => {
             try {
                 const qPatient = query(
-                    collection(db, 'patient'),
-                    where('name', '==', patient.patientName),
+                    collection(db, 'users'),
+                    where('username', '==', patient.patientName),
                     where('email', '==', patient.patientMail)
                 );
                 const patientsQuerySnapshot = await getDocs(qPatient);
@@ -36,7 +36,7 @@ const PatientDetail = ({ patient }) => {
 
 
     if (!patient) {
-        return <div>Loading...</div>;
+        return <div>Choose Patient</div>;
       }
       if (!patient.patientName) {
         return <div>No patient name available</div>;

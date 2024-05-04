@@ -54,7 +54,7 @@ const UpdatePatient = () => {
         const userData = userDoc.data(); // Dữ liệu hiện tại của người dùng
 
         try{
-            const qPatient = query(collection(db, 'patient'), where('name', '==', patient), where('email', '==', mail));
+            const qPatient = query(collection(db, 'users'), where('username', '==', patient), where('email', '==', mail));
             const patientsQuerySnapshot = await getDocs(qPatient);
             const patientsDoc = patientsQuerySnapshot.docs[0];
             const patientsData = patientsDoc.data();

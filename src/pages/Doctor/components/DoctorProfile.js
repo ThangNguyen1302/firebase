@@ -6,7 +6,6 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useAuthValue } from '../../../context/AuthContext';
 import DoctorNavbar from './DoctorNavbar';
 
-
 function Profile() {
   const { currentUser } = useAuthValue();
   const [userProfile, setUserProfile] = useState(null);
@@ -14,7 +13,7 @@ function Profile() {
 
   const [editedProfile, setEditedProfile] = useState({
     name: '',
-    gender: '',
+    gender: Boolean,
     birth: '',
     major: '',
     email: '',
@@ -40,19 +39,27 @@ function Profile() {
   const handleInputChange = (e) => {
     setEditedProfile({ ...editedProfile, [e.target.name]: e.target.value });
   };
-
   
+
+  const handleGenderChange = (e) => {
+    setEditedProfile({ ...editedProfile, [e.target.name]: e.target.value === 'Male' ? true : false });
+  }
+
   const handleCloseForm = () => {
     setEditingProfile(false);
   }
+
+  const handleEditProfile = () => {
+    setEditingProfile(true);
+  };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
       const userRef = doc(db, 'doctor', currentUser.uid);
       await updateDoc(userRef, editedProfile);
-      setUserProfile(editedProfile); // Update user profile with edited profile
-      setEditingProfile(false); // Exit editing mode
+      setUserProfile(editedProfile);
+      setEditingProfile(false);
       alert('Profile updated successfully!');
     } catch (error) {
       console.error('Error updating user profile:', error);
@@ -70,7 +77,7 @@ function Profile() {
             {editingProfile && (
               <div className="modal">
                 <div className="modal-content">
-                <span className="close" onClick={handleCloseForm}>
+                  <span className="close" onClick={handleCloseForm}>
                     &times;
                   </span>
                   <h2>Update Profile</h2>
@@ -91,12 +98,12 @@ function Profile() {
                         id="gender"
                         name="gender"
                         placeholder="Gender"
-                        value={editedProfile.gender}
-                        onChange={handleInputChange}
+                        value={editedProfile.gender ? 'Male' : 'Female'}
+                        onChange={handleGenderChange}
                       >
                         <option value="">-- Select gender --</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                       </select>
                     </div>
                     <div className="form-group">
@@ -129,7 +136,7 @@ function Profile() {
                         onChange={handleInputChange}
                       />
                     </div>
-                      <button type="submit">Save</button>
+                    <button type="submit">Save</button>
                   </form>
                   
                 </div>
@@ -138,7 +145,7 @@ function Profile() {
 
             {userProfile && <h3 className="BS">DR. {userProfile.name}</h3> }
             <div className="information">
-              <div className='in4'>
+            <div className='in4'>
                   <p>Email: </p>
                   <p>Name: </p>
                   <p>Gender: </p>
@@ -150,7 +157,7 @@ function Profile() {
                 <div className='infor'>
                   <p> {userProfile.email}</p>
                   <p> {userProfile.name}</p>
-                  <p> {userProfile.gender}</p>
+                  <p> {userProfile.gender ? 'Male' : 'Female'}</p>
                   <p> {userProfile.birth}</p>
                   <p> {userProfile.major}</p>
                   <p> {userProfile.phoneNumber}</p>
@@ -160,8 +167,7 @@ function Profile() {
             <button className='button' onClick={() => {
               setEditedProfile(userProfile);
               setEditingProfile(true);
-            }
-            }>
+            }}>
               Update
             </button>
           </div>
@@ -171,5 +177,3 @@ function Profile() {
 }
 
 export default Profile;
-
-
