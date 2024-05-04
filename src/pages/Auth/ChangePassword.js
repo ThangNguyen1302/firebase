@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { auth } from '../services/firebase-config';
-import { sendPasswordResetEmail, reauthenticateWithCredential, EmailAuthProvider, updatePassword } from "firebase/auth";
-import { toast } from 'react-toastify';
+import {  reauthenticateWithCredential, EmailAuthProvider, updatePassword } from "firebase/auth";
 import './ChangePassword.scss';
 const ChangePassword = () => {
     const [email, setEmail] = useState('');
@@ -9,10 +8,10 @@ const ChangePassword = () => {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const handlePasswordChange = async (event) => {
+    const handleChangePassword = async (event) => {
         event.preventDefault();
         if (newPassword !== confirmPassword) {
-            toast.error("New passwords do not match.");
+            alert("New passwords do not match.");
             return;
         }
 
@@ -22,9 +21,9 @@ const ChangePassword = () => {
 
             await reauthenticateWithCredential(user, credential);
             await updatePassword(user, newPassword);
-            toast.success("Password has been changed successfully.");
+            alert("Password has been changed successfully.");
         } catch (error) {
-            toast.error(`Failed to change password: ${error.message}`);
+            alert(`Failed to change password: ${error.message}`);
         }
     };
 
@@ -74,7 +73,7 @@ const ChangePassword = () => {
                         />
                     </div>
                     <div className="col-12">
-                        <button class="button-change-password" onClick={() => { this.handleChangePassword() }}>Change</button>
+                        <button class="button-change-password" onClick={(e) => handleChangePassword(e)}>Change</button>
                     </div>
                 </div>
             </div>

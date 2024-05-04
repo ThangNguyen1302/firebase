@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { auth, db } from '../../../services/firebase-config';
-import { collection, query, where, getDocs, doc, addDoc, setDoc, getDoc, updateDoc } from "firebase/firestore";
-import { useAuthValue } from '../../../../context/AuthContext';
+import { db } from '../../../services/firebase-config';
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 const PatientDetail = ({ patient }) => {
     const [patientData, setPatientData] = useState(null);
@@ -91,9 +89,6 @@ const PatientDetail = ({ patient }) => {
                             <ul>No history</ul>
                         )
                     }
-                    {/* <p>Day Start: {patient.Day_start}</p>
-                    <p>Diagnosis: {patient.Diagnosis}</p>
-                    <p>Status: {patient.Health_status}</p> */}
                 </div>
             </div>
         </div>

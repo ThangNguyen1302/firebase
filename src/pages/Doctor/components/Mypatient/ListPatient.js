@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { auth, db } from '../../../services/firebase-config';
-import { collection, query, where, getDocs, doc, addDoc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import {  db } from '../../../services/firebase-config';
+import {  doc, getDoc } from "firebase/firestore";
 import { useAuthValue } from '../../../../context/AuthContext';
 
 const ListPatient = ({ onPersonClick }) => {
@@ -14,9 +13,7 @@ const ListPatient = ({ onPersonClick }) => {
             try {
                 const userRef = doc(db, 'doctor', currentUser.uid);
                 const userDoc = await getDoc(userRef);
-                const data = userDoc.data();
-                console.log('userDoc:', data);
-                
+                const data = userDoc.data();                
                 setUserData(data);
             } catch (error) {
                 console.error('Error fetching appointments:', error);

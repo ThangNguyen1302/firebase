@@ -1,7 +1,6 @@
 // src/components/AppointmentForm.js
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { db } from '../../services/firebase-config';
 import { getDoc, updateDoc, doc } from "firebase/firestore"; // Import các biến và hàm từ Firebase Firestore
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -47,17 +46,12 @@ const UpdatePatient = () => {
 
   const updatePatient = async (e) => {
     e.preventDefault();
-    console.log('currentUser: ',currentUser);
     try {
         // Lấy tài liệu người dùng từ Firestore
         //currentUser.uid
         const userRef = doc(db, 'doctor', currentUser.uid);
-        console.log('userRef: ',userRef);
         const userDoc = await getDoc(userRef);
-        console.log('userDoc: ',userDoc);
         const userData = userDoc.data(); // Dữ liệu hiện tại của người dùng
-
-        console.log('userData: ',userData);
 
         try{
             const qPatient = query(collection(db, 'patient'), where('name', '==', patient), where('email', '==', mail));

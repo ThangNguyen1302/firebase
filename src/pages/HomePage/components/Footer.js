@@ -1,10 +1,8 @@
 import React from 'react';
-import logo from '../../images/logo.png'; // Importing image
 import face from '../../images/facebook.png'; // Importing image
 import inta from '../../images/instagram.png'; // Importing image
 import x from '../../images/x.png'; // Importing image
 import youtube from '../../images/youtube.png'; // Importing image
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const Footer = () => {

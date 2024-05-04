@@ -1,7 +1,6 @@
 import React from 'react';
 import '../HomePage/HomePage.css'; // Importing CSS file
 import './Doctor.css'
-import DoctorNavbar from './components/DoctorNavbar';
 import Appointment from './components/Appointment';
 
 

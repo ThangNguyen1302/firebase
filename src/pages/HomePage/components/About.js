@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import pickture3 from '../../images/doctor3.png'; // Importing image
 import tick from '../../images/tick.jpg'; // Importing image
-import arrow from '../../images/arrow.png'; // Importing image
 
 
 const About = () => {

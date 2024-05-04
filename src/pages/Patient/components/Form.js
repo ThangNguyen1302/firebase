@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { db } from '../../services/firebase-config';
 import { getDoc, updateDoc, doc } from "firebase/firestore"; // Import các biến và hàm từ Firebase Firestore
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, getDocs } from "firebase/firestore";
 import { useAuthValue } from '../../../context/AuthContext';
 import cancel from '../../images/cancel.jpg'; 
 
@@ -37,23 +37,16 @@ const AppointmentA = () => {
 
     const bookAppointment = async (e) => {
         e.preventDefault();
-        console.log('currentUser: ',currentUser);
         try {
             // Lấy tài liệu người dùng từ Firestore
             const userRef = doc(db, 'users', currentUser.uid);
-            console.log('userRef: ',userRef);
             const userDoc = await getDoc(userRef);
-            console.log('userDoc: ',userDoc);
             const userData = userDoc.data(); // Dữ liệu hiện tại của người dùng
-
-            console.log('userData: ',userData);
-
             const qDoctor = query(collection(db, 'doctor'));
             const doctorsQuerySnapshot = await getDocs(qDoctor);
-            const doctorsFilter = doctorsQuerySnapshot.docs.filter(doc =>doc.data().appointments == [] || doc.data().appointments.date !== date && doc.data().appointments.time !== time);
+            const doctorsFilter = doctorsQuerySnapshot.docs.filter(doc =>doc.data().appointments == [] || (doc.data().appointments.date !== date && doc.data().appointments.time !== time));
             
             let minAppointmentsDoctor;
-            console.log('Doctors: ', doctorsFilter);
 
             // Loop through doctors to find the one with the fewest appointments
             doctorsFilter.forEach(doc => {
@@ -65,7 +58,6 @@ const AppointmentA = () => {
                 }
             });
 
-            console.log('Min appointments doctor: ', minAppointmentsDoctor);
 
             if (isValid(minAppointmentsDoctor, userData, date, time)) {
                 const newAppointment = {
@@ -79,7 +71,6 @@ const AppointmentA = () => {
                 minAppointmentsDoctor.appointments.push(newAppointment);
                 
                 const docRef = doc(db, 'doctor', minAppointmentsDoctor.uid);
-                console.log('docRef: ', docRef);
                 await updateDoc(docRef, minAppointmentsDoctor);
             } else {
                 console.log('Appointment is not valid');

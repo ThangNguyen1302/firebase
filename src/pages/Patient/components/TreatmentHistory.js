@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { db } from "../../services/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 import { useAuthValue } from "../../../context/AuthContext";
-import { Link } from "react-router-dom";
-import InformationDetail from "./InformationDetail";
 
 const TreatmentHistory = () => {
   const { currentUser } = useAuthValue();
@@ -13,10 +11,8 @@ const TreatmentHistory = () => {
     const fetchData = async () => {
       try {
         const userRef = doc(db, "users", currentUser.uid);
-        console.log(currentUser.uid);
         const userDoc = await getDoc(userRef);
         const data = userDoc.data();
-        console.log("userDoc: ", data);
 
         setUserData(data);
       } catch (error) {
@@ -25,9 +21,6 @@ const TreatmentHistory = () => {
     };
     fetchData();
   }, [currentUser]);
-  const isValidHistory = (e) => {
-
-  };
 
   return (
     <div>

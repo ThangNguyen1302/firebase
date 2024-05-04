@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import {signOut} from 'firebase/auth';
-import { useAuthValue } from '../../../context/AuthContext';
 import user from '../../images/user.png';
 import { auth } from '../../services/firebase-config';
 
 
 const PatientNavbar = () => {
-    const { currentUser } = useAuthValue(); // Get the current user
     const history = useHistory(); // Access history object
 
     const handleAppointment = () => {
@@ -35,6 +32,10 @@ const PatientNavbar = () => {
         history.push("/mypatient"); // Navigate to the my patient page
     };
 
+    const handleChangePassword = () => {
+        history.push("/change-password"); // Navigate to the change password page
+    };
+
     return (
         <div className='header'>
             <div className="container">
@@ -52,6 +53,7 @@ const PatientNavbar = () => {
                             <img className='user-icon' src={user} alt="user" />
                                 <div className='dropdown'>
                                     <p onClick={handelProfile}>Profile</p>
+                                    <p onClick={handleChangePassword}>Change Pasword</p>
                                     <p onClick={handleSignOut}>Sign Out</p>
                                 </div>
                             

@@ -1,16 +1,12 @@
 //Các thứ liên quan đến React
 import React, { useState } from 'react';
-//import { connect } from 'react-redux';
-//import { push } from "connected-react-router";
-
-
 import { auth, db } from '../services/firebase-config'; // Đường dẫn tới file cấu hình Firebase
 //import { db } from '../../services/firebase-config';
 //đăng nhập và gửi email reset password
-import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth"; //Đăng nhập và quên pass
+import { signInWithEmailAndPassword } from "firebase/auth"; //Đăng nhập và quên pass
 
 //Lấy thông tin user từ filestore
-import { getFirestore, getDoc, doc } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 
 
 // import * as actions from "../store/actions";

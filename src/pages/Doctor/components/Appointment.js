@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuthValue } from '../../../context/AuthContext';
 import { useState, useEffect } from 'react';
-import { collection, query, doc, getDoc, updateDoc, onSnapshot, getDocs } from "firebase/firestore";
+import { doc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
 import { db } from '../../services/firebase-config';
 import cancel from '../../images/cancel.jpg'; 
 import DoctorNavbar from './DoctorNavbar';
@@ -31,7 +31,6 @@ const Appointment = () => {
                   const doctorData = doc.data();
                   if (doctorData.appointments) {
                     setAppointments(doctorData.appointments);
-                    console.log('Appointments:', doctorData.appointments);
                   } else {
                     // Xử lý trường hợp không có trường 'appointments'
                     console.log('Không có dữ liệu cuộc hẹn nào.');
@@ -126,24 +125,12 @@ const Appointment = () => {
 
     const bookAppointment = async (e, date, time) => {
         e.preventDefault();
-        console.log('date: ',date);
-        console.log('time: ',time);
-        console.log('patientTaget: ',patientTaget);
-        console.log('currentUser: ',currentUser);
         try {
             // Lấy tài liệu người dùng từ Firestore
             const doctorRef = doc(db, 'doctor', currentUser.uid);
-            console.log('doctorRef: ',doctorRef);
-            const doctorDoc = await getDoc(doctorRef);
-            console.log('doctorDoc: ',doctorDoc);
-            const doctorData = doctorDoc.data(); // Dữ liệu hiện tại của người dùng
-
-            console.log('doctorData: ',doctorData);
-//
             const patientRef = doc(db, 'users', patientTaget.patientId);
             const patientDoc = await getDoc(patientRef);
             const patientData = patientDoc.data(); // Dữ liệu hiện tại của người dùng
-            console.log('patientData: ',patientData);
 
             // Cập nhật hoặc thêm các trường mới vào tài liệu người dùng
             const updatedDoctorAppointments = appointments.map(appointment => {
@@ -172,10 +159,8 @@ const Appointment = () => {
                             reason: 're-examination',
                         };
                     }
-                    console.log('appointment: ',appointment);
                     return appointment;
                 });
-                console.log('updatedPatientAppointments: ',updatedPatientAppointments);
 
                 await updateDoc(patientRef, {appointments: updatedPatientAppointments});
             } else {
@@ -183,11 +168,6 @@ const Appointment = () => {
                 return;
             }
 
-            
-
-            
-
-            
             setAppointments(updatedDoctorAppointments); // Cập nhật danh sách cuộc hẹn cục bộ
 
             console.log('Appointment updated successfully!');
@@ -215,23 +195,12 @@ const Appointment = () => {
 
 
     const setStatus = async (apt, status) => {
-        console.log('currentUser: ',currentUser);
-        console.log('status: ',status);
-        console.log('apt: ',apt);
         try {
             // Lấy tài liệu người dùng từ Firestore
             const doctorRef = doc(db, 'doctor', currentUser.uid);
-            console.log('doctorRef: ',doctorRef);
-            const doctorDoc = await getDoc(doctorRef);
-            console.log('doctorDoc: ',doctorDoc);
-            const doctorData = doctorDoc.data(); // Dữ liệu hiện tại của người dùng
-
-            console.log('doctorData: ',doctorData);
-//
             const patientRef = doc(db, 'users', apt.patientId);
             const patientDoc = await getDoc(patientRef);
             const patientData = patientDoc.data(); // Dữ liệu hiện tại của người dùng
-            console.log('patientData: ',patientData);
 
             const updatedPatientAppointments = patientData.appointments.map(appointment => {
                 if (appointment.date === apt.date && appointment.time === apt.time) {
@@ -240,18 +209,11 @@ const Appointment = () => {
                         status: status
                     };
                 }
-                console.log('appointment: ',appointment);
                 return appointment;
             });
-            console.log('updatedPatientAppointments: ',updatedPatientAppointments);
 
             await updateDoc(patientRef, {appointments: updatedPatientAppointments});
            
-
-            
-
-            
-
             // Cập nhật hoặc thêm các trường mới vào tài liệu người dùng
             const updatedDoctorAppointments = appointments.map(appointment => {
                 if (appointment.date === apt.date && appointment.time === apt.time) {

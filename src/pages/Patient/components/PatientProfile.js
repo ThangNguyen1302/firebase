@@ -34,17 +34,7 @@ function PatientProfile() {
             ) : (
                 <button onClick={handleUpdateClick}>Update</button>
             )}
-            {/* <h1>
-              <strong>Informationd detail</strong>
-            </h1>
-            <ul>
-              <p>Name: </p>
-              <p>Age: </p>
-              <p>Gender: </p>
-              <p>Insurance Code: </p>
-              <p>Profile: </p>
-            </ul>
-            <button>UPDATE</button> */}
+            
           </div>
           </div>
           <div className="card">

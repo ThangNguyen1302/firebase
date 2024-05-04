@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { auth, db } from '../../../../services/firebase-config'; // Đảm bảo đường dẫn đúng
 import '../../../../Auth/SignIn.scss';
-import { createUserWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FirebaseError } from 'firebase/app';
-import { Link } from 'react-router-dom';
-import { useAuthValue } from '../../../../../context/AuthContext';
 import { useHistory } from 'react-router-dom';
 
 const SignUpDoc = () => {
@@ -16,7 +12,6 @@ const SignUpDoc = () => {
     const [password, setPassword] = useState('');
     const [confirmpassword, setConfirmPassword] = useState('');
     const [formError, setFormError] = useState('');
-    const { setTimeActive } = useAuthValue();
     const history = useHistory();
 
 
@@ -69,27 +64,10 @@ const SignUpDoc = () => {
         setEmail(event.target.value);
     };
 
-    // const handleForgotPassword = async () => {
-    //     if (!isEmailValid(username)) {
-    //         toast.error("Please enter a valid email address.");
-    //         return;
-    //     }
-    //     try {
-    //         await sendPasswordResetEmail(auth, username);
-    //         alert("A password reset email has been sent to your email address.");
-    //     } catch (error) {
-    //         console.error("Failed to send password reset email: ", error);
-    //         alert("Failed to send password reset email. Please try again.");
-    //     }
-    // };
 
 
     const handleSignUp = async (event) => {
         event.preventDefault(); // ngăn trang reload khi nhấn nút submit
-
-        console.log('Username: ', username);
-        console.log('Password: ', password);
-        console.log('Confirm Password: ', confirmpassword);
 
         if (validateForm()) {
             console.log('Form is valid');
@@ -97,19 +75,6 @@ const SignUpDoc = () => {
 
                 // Sử dụng Firebase Auth để tạo tài khoản mới
                 const userCredential = await createUserWithEmailAndPassword(auth, mail, password);
-                console.log("User created: ", userCredential.user);
-                //setTimeActive(true);
-
-                // const firstname = "Test";
-                // const lastname = "Thu thoi";
-                // Tùy chọn: Lưu thông tin người dùng vào Firestore
-                // const docRef = await addDoc(collection(db, "Accounts"), {
-                //     username: username,
-                //     // Bạn có thể thêm thêm thông tin tại đây
-                //     firstname: firstname,
-                //     lastname: lastname,
-                // });
-                // console.log("Document written with ID: ", docRef.id);
                 const userRef = doc(db, "doctor", userCredential.user.uid); // Lấy uid làm ID document
                 await setDoc(userRef, {
                     uid: userCredential.user.uid,
@@ -145,7 +110,6 @@ const SignUpDoc = () => {
     const handleBack = () => {
         history.push('/managedoctors');
     };
-    console.log(formError);
     return (
         <div className="login-background">
             <div className="login-container">
@@ -195,13 +159,7 @@ const SignUpDoc = () => {
                     <div className="back" onClick={handleBack}>
                         Back to manage doctors
                     </div>
-                    {/* Tạm thời comment phần đăng nhập bằng mạng xã hội
-            <div className="text-other-login">Or Login with:</div>
-            <div className="social-login">
-                <i className="fab fa-google-plus-g google"></i>
-                <i className="fab fa-facebook-f facebook"></i>
-            </div>
-            */}
+                    
                 </div>
             </div>
         </div>

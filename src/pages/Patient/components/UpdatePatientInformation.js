@@ -1,10 +1,7 @@
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { db } from '../../services/firebase-config';
 import { getDoc, updateDoc, doc } from "firebase/firestore"; // Import các biến và hàm từ Firebase Firestore
-import InformationDetail from "./InformationDetail";
 import { useAuthValue } from '../../../context/AuthContext';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const isDefine = (e, name, age, gender, insurance, email) => {
     if (e.information == null){
@@ -32,19 +29,14 @@ const UpdatePatientInformation =  () => {
     const[insurance,setInsurance]=useState('');
     const[address,setAddress]=useState('');
     const {currentUser}=useAuthValue();
-    const history = useHistory(); 
     const setInformationDetail = async(e) =>{
         e.preventDefault();
-        console.log('currentUser: ',currentUser);
         try{
             //Lấy dữ liệu từ firestore
             const userRef = doc(db, 'users', currentUser.uid);
-            console.log('userRef:',userRef);
             const userDoc = await getDoc(userRef);
-            console.log('userDoc:',userDoc);
             const userData=userDoc.data(); // lấy dữ liệu hiện tại
 
-            console.log('userData:',userData);
             if(isDefine(userDoc,name,age,gender,insurance)){
                 const updatedUserData={
                     ...userData,
@@ -62,10 +54,7 @@ const UpdatePatientInformation =  () => {
                 console.error('Error updating Patient Information:',error);
             }
         };
-        const handlePatientInformation = () => {
-    
-            history.push("/InformationDetail"); 
-          };
+
 
         return (
             <div className='updatePatient'>

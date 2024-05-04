@@ -1,11 +1,8 @@
 // src/components/Profile.js
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { signOut } from 'firebase/auth';
-import { auth, db } from '../../services/firebase-config';
-import { collection, query, where, getDocs, doc, addDoc, setDoc, getDoc, updateDoc } from "firebase/firestore";
-import { useHistory } from 'react-router-dom'; // Import useHistory
+import { db } from '../../services/firebase-config';
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useAuthValue } from '../../../context/AuthContext';
 import DoctorNavbar from './DoctorNavbar';
 
@@ -48,10 +45,6 @@ function Profile() {
   const handleCloseForm = () => {
     setEditingProfile(false);
   }
-
-  const handleEditProfile = () => {
-    setEditingProfile(true);
-  };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -179,6 +172,4 @@ function Profile() {
 
 export default Profile;
 
-            {/* <p>
-              <span><strong>Email verified:</strong></span> <span className='infor'> {`${currentUser.emailVerified}`}</span> 
-            </p> */}
+

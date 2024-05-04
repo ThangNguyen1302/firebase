@@ -1,25 +1,12 @@
-import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import {signOut} from 'firebase/auth';
-import { useAuthValue } from '../../../context/AuthContext';
 import user from '../../images/user.png';
 import { auth } from '../../services/firebase-config';
 
 const PatientNavbar = () => {
-    const { currentUser } = useAuthValue(); // Get the current user
     const history = useHistory(); // Access history object
     const location = history.location.pathname; // Get the current location
-
     const isPatient = location === "/patient"; // Check if the user is on the patient page
-
-    const handleSigin = () => {
-        history.push("/signin"); // Navigate to the signin page
-    };
-
-    const handleSignUp = () => {
-        history.push("/signup"); // Navigate to the registration page
-    };
 
     const handleScrollToSection = (sectionId) => {
         const section = document.getElementsByClassName(sectionId)[0]; // Get the section by class name
@@ -48,6 +35,10 @@ const PatientNavbar = () => {
         history.push("/patient"); // Navigate to the patient page
     };
 
+    const handleChangePassword = () => {
+        history.push("/change-password"); // Navigate to the change password page
+    };
+
     return (
         <div className='header'>
             <div className="container">
@@ -66,6 +57,7 @@ const PatientNavbar = () => {
                             <img className='user-icon' src={user} alt="user" />
                                 <div className='dropdown'>
                                     <p onClick={handelProfile}>Profile</p>
+                                    <p onClick={handleChangePassword}>Change Pasword</p>
                                     <p onClick={handleSignOut}>Sign Out</p>
                                 </div>
                             

@@ -1,11 +1,9 @@
 // src/components/AppointmentForm.js
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { db } from '../../services/firebase-config';
-import { getDoc, updateDoc, doc } from "firebase/firestore"; // Import các biến và hàm từ Firebase Firestore
+import { updateDoc, doc } from "firebase/firestore"; // Import các biến và hàm từ Firebase Firestore
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { useAuthValue } from '../../../context/AuthContext';
 import DoctorNavbar from './DoctorNavbar';
 
 

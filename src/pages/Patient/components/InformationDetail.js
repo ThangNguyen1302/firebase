@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { db } from "../../services/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 import { useAuthValue } from "../../../context/AuthContext";
-import { Link } from "react-router-dom";
-import UpdatePatientInformation from "./UpdatePatientInformation";
 
 const InformationDetail = () => {
   const { currentUser } = useAuthValue();

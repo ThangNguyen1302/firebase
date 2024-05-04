@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { db } from '../../services/firebase-config';
-import { collection, query, doc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
+import { doc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
 import { useAuthValue } from '../../../context/AuthContext';
 
 const AppointmentB = () => {
@@ -18,7 +18,6 @@ const AppointmentB = () => {
                   const userData = doc.data();
                   if (userData.appointments) {
                     setAppointments(userData.appointments);
-                    console.log('Appointments:', userData.appointments);
                   } else {
                     // Xử lý trường hợp không có trường 'appointments'
                     console.log('Không có dữ liệu cuộc hẹn nào.');

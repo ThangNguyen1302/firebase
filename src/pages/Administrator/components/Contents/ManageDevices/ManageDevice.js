@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from '../../../../services/firebase-config';
-import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc, onSnapshot } from "firebase/firestore";
+import { collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot } from "firebase/firestore";
 import "./ManageDevice.css";
 import AdminNavbar from '../../AdminNavbar';
 
@@ -107,7 +107,6 @@ function ManageDevice() {
         value={searchTerm}
         onChange={handleSearch}
       />
-      {/* <button onClick={handleSearch}>Search</button> */}
       <button onClick={() => setShowDeviceForm(true)}>Add Device</button>
       {showDeviceForm && (
         <div className="modal">

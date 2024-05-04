@@ -28,19 +28,7 @@ const PasswordReset = () => {
         <div className='password-reset-background'>
             <div className="password-reset-container">
                 <ToastContainer position="top-center" autoClose={5000} />
-                {/* <form onSubmit={handleSubmit}>
-                    <div className="col-12 form-group change-password-input">
-                        <label>Email:</label>
-                        <input
-                            type="email"
-                            value={email}
-                            className="form-control"
-                            placeholder="Enter your email"
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <button type="submit" className="btn btn-primary">Send Reset Email</button>
-                </form> */}
+                
                 <div className='password-reset-content row'>
                     <div className="col-12 text-change-password">Reset Password</div>
                     <div className="col-12 form-group password-reset-input">
