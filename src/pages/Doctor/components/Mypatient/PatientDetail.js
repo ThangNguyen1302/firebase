@@ -73,6 +73,7 @@ const PatientDetail = ({ patient }) => {
                                     <p>Doctor's Name: </p>
                                     <p>Diagnosis: </p>
                                     <p>Status: </p>
+                                    <p>Treatments: </p>
                                     </strong>
                                 </div>
                                 <div className='inforp'>
@@ -80,6 +81,7 @@ const PatientDetail = ({ patient }) => {
                                     <p>{his.DoctorName}</p>
                                     <p>{his.Diagnosis}</p>
                                     <p>{his.Health_status}</p>
+                                    <p>{his.Treatments}</p>
                                 </div>
                             </div>
                             <br></br>

@@ -198,6 +198,8 @@ const Appointment = () => {
         try {
             // Lấy tài liệu người dùng từ Firestore
             const doctorRef = doc(db, 'doctor', currentUser.uid);
+            const doctorDoc = await getDoc(doctorRef);
+            const doctorData = doctorDoc.data(); // Dữ liệu hiện tại của người dùng
             const patientRef = doc(db, 'users', apt.patientId);
             const patientDoc = await getDoc(patientRef);
             const patientData = patientDoc.data(); // Dữ liệu hiện tại của người dùng
@@ -225,7 +227,9 @@ const Appointment = () => {
                 return appointment;
             });
             
-            
+            if(doctorData.status === false && status === 'approve'){
+                await updateDoc(doctorRef, {status: true});
+            }
             setAppointments(updatedDoctorAppointments); // Cập nhật danh sách cuộc hẹn cục bộ
             // Cập nhật tài liệu người dùng với dữ liệu mới
             await updateDoc(doctorRef, {appointments: updatedDoctorAppointments});
